@@ -1,47 +1,42 @@
 // SPACE INVADER
-// Version 0.0.0
-// LEMOINE NICOLAS
-// SAVOURET RODOLPHE
+/*==================================================================================================
+Revision History:
+                            Modification       Rev.
+Author                       Date D/M/Y       Number    Description of Changes
+-------------------------   ------------    ----------  -------------------------------------------
+N.LEMOINE
+R.SAVOURET                                    				Initial version of the file.
 
-#include "space_invader.h"
+==================================================================================================*/
 
+/*==================================================================================================
+                                         INCLUDE FILES
+==================================================================================================*/
+#include "avion.h"
 
-unsigned int background_color = BLUE;
+/*==================================================================================================
+                                           CONSTANTS
+==================================================================================================*/
 
-unsigned int avion_xbase=60;
-unsigned int avion_ybase=111;
-//extern unsigned int SPACE_avion[15][20];
+/*==================================================================================================
+                                       DEFINES AND MACROS
+==================================================================================================*/
 
-unsigned int SPACE_avion[AVION_Y_LENGTH][AVION_X_LENGTH]=
-{	RED,RED,RED,RED,RED,RED,RED,RED,RED,RED,RED,RED,RED,RED,RED, // ->>>>> y
-	BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,
-	BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,
-	BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,
-	BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,
-	BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE};
+/*==================================================================================================
+                                             ENUMS
+==================================================================================================*/
 
-void init_SPACE_INVADER()
-{
-    LCD_Init();
-    LCD_Fill(BLUE);
-    initTimer();
-	initJoystick();
-    
-}
+/*==================================================================================================
+                                 STRUCTURES AND OTHER TYPEDEFS
+==================================================================================================*/
+
+/*==================================================================================================
+                                 GLOBAL VARIABLE DECLARATIONS
+==================================================================================================*/
+
+/*==================================================================================================
+                                     FUNCTION PROTOTYPES
+==================================================================================================*/
 
 void afficher_avion(unsigned int xbase, unsigned int ybase)
 {
@@ -99,24 +94,3 @@ void decaler_avion(JOYSTICK_POS pos)
 
 
 
-
-// Timer A0 interrupt
-#pragma vector=TIMERA0_VECTOR
-__interrupt void Timer_A (void) // Fonction d'interruption sur le timer
-{ 
-    JOYSTICK_POS pos;  
-    pos = GetJoystickPosition();
-    decaler_avion(pos);
-    
-}
-
-// Initialisation du timer
-void initTimer()
-{   
-  CCR0 = 32768/5 -1;
-  CCTL1 = OUTMOD_7; // CCR1 reset/set
- //CCR1 = CCR0; // CCR1 PWM duty cycle
-  TACTL = TASSEL_2 + MC_1;                  // ACLK, upmode
-  TA0CCTL0 = CCIE;
-  __bis_SR_register(GIE);
-}

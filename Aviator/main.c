@@ -10,7 +10,6 @@
 #include "space_invader.h"
 #include "driver.h"
 
-
 void Delay (unsigned long a)
 {
     while (--a!=0) {
@@ -18,10 +17,9 @@ void Delay (unsigned long a)
     }
 }
 
-
-int main( void )
+void init_board()
 {
-    // Stop watchdog timer
+  // Stop watchdog timer
     WDTCTL = WDTPW + WDTHOLD;
 
     // External oscilator 8MHz
@@ -52,15 +50,20 @@ int main( void )
     P2SEL &= ~BIT6;
     // input
     P2DIR &= ~BIT6;
-
     
+    InitJoystick();
+}
 
-    
+int main( void )
+{
+    init_board();
+     
     unsigned char x=10,y=10;
+    
     JOYSTICK_POS pos;
  
-    InitJoystick();
-    init_SPACE_INVADER();
+    init_aviator();
+    
     while(1) 
     {
       //pos = GetJoystickPosition();

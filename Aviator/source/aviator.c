@@ -1,105 +1,37 @@
-// SPACE INVADER
-// Version 0.0.0
-// LEMOINE NICOLAS
-// SAVOURET RODOLPHE
+/*==================================================================================================
+Revision History:
+                            Modification       Rev.
+Author                       Date D/M/Y       Number    Description of Changes
+-------------------------   ------------    ----------  -------------------------------------------
+N.LEMOINE
+R.SAVOURET                                    				Initial version of the file.
 
-#include "space_invader.h"
-
-
-unsigned int background_color = BLUE;
-
-unsigned int avion_xbase=60;
-unsigned int avion_ybase=111;
-//extern unsigned int SPACE_avion[15][20];
-
-unsigned int SPACE_avion[AVION_Y_LENGTH][AVION_X_LENGTH]=
-{	RED,RED,RED,RED,RED,RED,RED,RED,RED,RED,RED,RED,RED,RED,RED, // ->>>>> y
-	BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,
-	BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,
-	BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,
-	BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,
-	BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,
-	BLUE,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,YELLOW,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,
-	BLUE,BLUE,BLUE,BLUE,BLUE,BLUE,YELLOW,YELLOW,YELLOW,BLUE,BLUE,BLUE,BLUE,BLUE,BLUE};
-
-void init_SPACE_INVADER()
-{
-    LCD_Init();
-    LCD_Fill(BLUE);
-    initTimer();
-	initJoystick();
-    
-}
-
-void afficher_avion(unsigned int xbase, unsigned int ybase)
-{
-  unsigned char y,x;
- 
-  for(x=0; x<15; x++)
-    for(y=0; y<20; y++)
-      LCD_SetPixel(ybase+y,xbase+AVION_X_LENGTH,SPACE_avion[x][y]);
-}
-
-void decaler_avion(JOYSTICK_POS pos)
-{
-  unsigned char y,x;
- 
-  switch(pos)
-    {
-      case J_LEFT:
-        // Effacement pixel plus utilisé
-        if(avion_xbase>=4)
-        {
-          for(x=avion_xbase+AVION_X_LENGTH; x>avion_xbase+AVION_X_LENGTH-AVION_SPEED; x--)
-            for(y=avion_ybase; y<avion_ybase+AVION_Y_LENGTH; y++)
-                LCD_SetPixel(y,x,background_color);
-          
-          avion_xbase-=AVION_SPEED;
-          for(x=0; x<15; x++)
-            for(y=0; y<20; y++)
-              LCD_SetPixel(avion_ybase+y,avion_xbase+x,SPACE_avion[y][x]);
-        }
-        break;
-        
-      case J_RIGHT:
-        // Effacement pixel plus utilisé
-        if(avion_xbase+AVION_X_LENGTH <= 126)
-        {
-          for(x=avion_xbase; x<avion_xbase+AVION_SPEED; x++)
-            for(y=avion_ybase; y<avion_ybase+AVION_Y_LENGTH; y++)
-                LCD_SetPixel(y,x,background_color);
-          
-          avion_xbase+=AVION_SPEED;
-          for(x=0; x<15; x++)
-            for(y=0; y<20; y++)
-              LCD_SetPixel(avion_ybase+y,avion_xbase+x,SPACE_avion[y][x]);
-        }
-        break;
-    }
-  
-  
-  for(x=0; x<15; x++)
-    for(y=0; y<20; y++)
-      LCD_SetPixel(avion_ybase+y,x+avion_xbase,SPACE_avion[x][y]);
-  
-}
+==================================================================================================*/
 
 
 
+/*==================================================================================================
+                                         INCLUDE FILES
+==================================================================================================*/
+#include "aviator.h"
+
+/*==================================================================================================
+                                           CONSTANTS
+==================================================================================================*/
 
 
+/*==================================================================================================
+                                       DEFINES AND MACROS
+==================================================================================================*/
+
+
+/*==================================================================================================
+                                             ENUMS
+==================================================================================================*/
+
+/*==================================================================================================
+                                 STRUCTURES AND OTHER TYPEDEFS
+==================================================================================================*/
 // Timer A0 interrupt
 #pragma vector=TIMERA0_VECTOR
 __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
@@ -107,7 +39,25 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     JOYSTICK_POS pos;  
     pos = GetJoystickPosition();
     decaler_avion(pos);
-    
+}
+/*==================================================================================================
+                                 GLOBAL VARIABLE DECLARATIONS
+==================================================================================================*/
+
+unsigned int background_color = BLUE;
+
+unsigned int avion_xbase=60;
+unsigned int avion_ybase=111;
+
+/*==================================================================================================
+                                     FUNCTION PROTOTYPES
+==================================================================================================*/
+
+void init_aviator()
+{
+    LCD_Init();
+    LCD_Fill(BLUE);
+    initTimer();    
 }
 
 // Initialisation du timer
