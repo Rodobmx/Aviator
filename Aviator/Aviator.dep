@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>4003835844</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\mainXC16.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\modbus.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\Aviator.pbd</file>
+      <file>$PROJ_DIR$\Debug\Obj\asw.r43</file>
+      <file>$PROJ_DIR$\Debug\Exe\Aviator.d43</file>
+      <file>$PROJ_DIR$\Debug\Exe\Aviator.ulp</file>
+      <file>$TOOLKIT_DIR$\inc\io430.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\avion.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\asw.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\mainXC16.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\io430x14x.h</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\modbus.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\arme.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\driver_bouton.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\aviator.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\driver_joystick.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\meteore.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\arme.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\aviator.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\avion.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\driver_bouton.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\driver_joystick.pbi</file>
+      <file>$PROJ_DIR$\header\ge8lcd.h</file>
+      <file>$PROJ_DIR$\header</file>
+      <file>$PROJ_DIR$\header\driver.h</file>
+      <file>$PROJ_DIR$\source</file>
+      <file>F:\asw\asw_programme_--.X\source\asw.c</file>
+      <file>$PROJ_DIR$\header\font.h</file>
+      <file>$PROJ_DIR$\source\ge8lcd.c</file>
+      <file>$PROJ_DIR$\source\driver.c</file>
+      <file>$PROJ_DIR$\header\space_sprites.h</file>
+      <file>$PROJ_DIR$\header\space_invader.h</file>
+      <file>$PROJ_DIR$\source\space_invader.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\meteore.pbi</file>
+      <file>$PROJ_DIR$\header\driver_joystick.h</file>
+      <file>$PROJ_DIR$\header\driver_boutons.h</file>
+      <file>F:\asw\asw_programme_--.X\source\mainXC16.c</file>
+      <file>F:\asw\asw_programme_--.X\source\modbus.c</file>
+      <file>F:\asw\asw_programme_--.X\source\uart.c</file>
+      <file>$PROJ_DIR$\source\driver_joystick.c</file>
+      <file>$PROJ_DIR$\source\driver_bouton.c</file>
+      <file>$PROJ_DIR$\source\meteore.c</file>
+      <file>$PROJ_DIR$\source\arme.c</file>
+      <file>$PROJ_DIR$\source\aviator.c</file>
+      <file>$PROJ_DIR$\source\avion.c</file>
+      <file>$PROJ_DIR$\header\meteore.h</file>
+      <file>$PROJ_DIR$\header\avion.h</file>
+      <file>$PROJ_DIR$\header\aviator.h</file>
+      <file>$PROJ_DIR$\header\arme.h</file>
+      <file>$PROJ_DIR$\header\sprites.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\driver.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\ge8lcd.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\space_invader.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\driver.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\ge8lcd.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\space_invader.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\msp430xG46x.h</file>
+      <file>$TOOLKIT_DIR$\inc\in430.h</file>
+      <file>$PROJ_DIR$\source\&lt;invalid loc&gt;</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\yvals.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdarg.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Defaults.h</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdio.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ysizet.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ystdio.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdint.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdbool.h</file>
+      <file>F:\asw\asw_programme_--.X\source\&lt;invalid loc&gt;</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>ULP430</name>
+          <file> 8</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 2</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9 14 15</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>F:\asw\asw_programme_--.X\source\asw.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 6</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 78</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\ge8lcd.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 57</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 64 62 63 15 67 65 66 68 69 70 71 72 73 74 75 76 77</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\driver.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 59</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 56</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 64 62 63 15</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\space_invader.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 61</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 58</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>F:\asw\asw_programme_--.X\source\mainXC16.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 3</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 78</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>F:\asw\asw_programme_--.X\source\modbus.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 16</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 4</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 78</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>F:\asw\asw_programme_--.X\source\uart.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 18</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 12</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 78</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\driver_joystick.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 21</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62 63 15</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\driver_bouton.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 19</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62 63 15</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\meteore.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 39</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 22</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\arme.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 17</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\aviator.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 20</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\avion.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 25</file>
+        </tool>
+        <tool>
+          <name>ICC430</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+
