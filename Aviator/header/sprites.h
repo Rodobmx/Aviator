@@ -8,8 +8,8 @@ R.SAVOURET                                    				Initial version of the file.
 
 ==================================================================================================*/
 
-#ifndef _SPACE_SPRITES_H_
-#define	_SPACE_SPRITES_H_
+#ifndef _SPRITES_H_
+#define	_SPRITES_H_
 
 /*==================================================================================================
                                          INCLUDE FILES
@@ -23,7 +23,8 @@ R.SAVOURET                                    				Initial version of the file.
 /*==================================================================================================
                                        DEFINES AND MACROS
 ==================================================================================================*/
-
+#define AVION_X_LENGTH 15
+#define AVION_Y_LENGTH 20
 
 
 /*==================================================================================================
@@ -38,7 +39,8 @@ R.SAVOURET                                    				Initial version of the file.
                                  GLOBAL VARIABLE DECLARATIONS
 ==================================================================================================*/
 //unsigned int SPACE_meteor[15][15]={MAGENTA};
-unsigned int SPACE_avion[15][20]=
+/*
+unsigned int SPACE_avion[AVION_Y_LENGTH][AVION_X_LENGTH]=
 {	BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,YELLOW	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	, // ->>>>> y
 	BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,YELLOW	,YELLOW	,YELLOW	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,
 	BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,YELLOW	,YELLOW	,YELLOW	,YELLOW	,YELLOW	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,
@@ -59,13 +61,10 @@ unsigned int SPACE_avion[15][20]=
 	BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,YELLOW	,YELLOW	,YELLOW	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,
 	BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,YELLOW	,YELLOW	,YELLOW	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,
 	BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,YELLOW	,YELLOW	,YELLOW	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE};
+*/
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
-void InitADC12(void);
-unsigned int GetADC12_A7(void);
-void InitJoystick(void);
-JOYSTICK_POS GetJoystickPosition(void);
 
 
-#endif	/* _SPACE_SPRITES_H_ */
+#endif	/* _SPRITES_H_ */

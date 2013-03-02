@@ -16,8 +16,8 @@ R.SAVOURET                                    				Initial version of the file.
 ==================================================================================================*/
 #include "msp430.h"
 #include <msp430xG46x.h>
-#include "space_sprites.h"
-#include "driver.h"
+#include "sprites.h"
+#include "driver_joystick.h"
 
 /*==================================================================================================
                                            CONSTANTS
@@ -27,8 +27,7 @@ R.SAVOURET                                    				Initial version of the file.
                                        DEFINES AND MACROS
 ==================================================================================================*/
 
-#define AVION_X_LENGTH 15
-#define AVION_Y_LENGTH 20
+
 
 #define AVION_SPEED 4
 
@@ -49,8 +48,7 @@ R.SAVOURET                                    				Initial version of the file.
 ==================================================================================================*/
 void afficher_avion(unsigned int x, unsigned int y);
 void decaler_avion(JOYSTICK_POS pos);
-void initTimer();
-void init_SPACE_INVADER();
+
 
 
 #endif	/* _AVION_H_ */

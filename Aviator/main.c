@@ -6,9 +6,9 @@
 #endif
 
 #include <stdint.h>
-#include "ge8lcd.h"
-#include "space_invader.h"
-#include "driver.h"
+//#include "header/ge8lcd.h"
+#include "header/aviator.h"
+#include "header/driver_boutons.h"
 
 void Delay (unsigned long a)
 {

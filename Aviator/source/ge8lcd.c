@@ -1,4 +1,4 @@
-#include "ge8lcd.h"
+#include "..\header\ge8lcd.h"
 
 #ifdef __MSPGCC__
 #include "msp430.h"
@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "font.h"
+#include "..\header\font.h"
 
 /** LCD Characteristics */
 // note: the LCD is 132 row and 132 columns, the first and last one are not seen
