@@ -87,12 +87,16 @@ void decaler_avion(JOYSTICK_POS pos)
               LCD_SetPixel(avion_ybase+y,avion_xbase+x,SPACE_avion[y][x]);
         }
         break;
+        
+      case J_CENTER: // TIR
+        break;
     }
   
-  
+  /*
   for(x=0; x<15; x++)
     for(y=0; y<20; y++)
       LCD_SetPixel(avion_ybase+y,x+avion_xbase,SPACE_avion[x][y]);
+  */
   
 }
 

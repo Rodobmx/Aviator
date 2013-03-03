@@ -18,6 +18,7 @@ R.SAVOURET                                    				Initial version of the file.
 #include <msp430xG46x.h>
 #include "driver_joystick.h"
 #include "avion.h"
+#include "meteore.h"
 
 /*==================================================================================================
                                            CONSTANTS

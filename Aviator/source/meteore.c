@@ -12,7 +12,7 @@ R.SAVOURET       				        	     -           Initial version of the file.
 /*==================================================================================================
                                         INCLUDE FILES
 ==================================================================================================*/
-
+#include "..\header\meteore.h"
 
 /*==================================================================================================
                                         LOCAL MACROS
@@ -37,7 +37,8 @@ R.SAVOURET       				        	     -           Initial version of the file.
 /*==================================================================================================
                                        GLOBAL VARIABLES
 ==================================================================================================*/
-
+S_METEORE meteore[NB_METEORE_MAX];
+extern unsigned int sprite_meteore[METEORE_Y_LENGTH][METEORE_X_LENGTH];
 /*==================================================================================================
                                    LOCAL FUNCTION PROTOTYPES
 ==================================================================================================*/
@@ -51,6 +52,49 @@ R.SAVOURET       				        	     -           Initial version of the file.
 /*==================================================================================================
                                        GLOBAL FUNCTIONS
 ==================================================================================================*/
+// ajouter timer
+void addMeteore()
+{
+  int i = 0;
+  while(meteore[i].state != NULL)
+  {
+    i++;
+    if(i>NB_METEORE_MAX-1)
+      return; // Nb max de météores atteint
+  }
+  
+  meteore[i].state = EXIST;
+  meteore[i].x = 40; // a remplacer par rand()
+  meteore[i].y = 0;
+}
+                                         
+void avanceMeteore()
+{
+  int i = 0;
+  for(i; i<NB_METEORE_MAX; i++)
+    if(meteore[i].state == EXIST)
+      meteore[i].y++;
+}
+  
+void detruireMeteore(unsigned int i)
+{
+  meteore[i].state = NULL;
+}
+
+void afficher_meteore()
+{
+  unsigned char y,x;
+  unsigned int i=0;
+  for(i; i<NB_METEORE_MAX; i++)
+    if(meteore[i].state == EXIST)
+    {
+      for(x=0; x<15; x++)
+        for(y=0; y<20; y++)
+          LCD_SetPixel(meteore[i].y+y,meteore[i].x+x,sprite_meteore[x][y]);
+    }
+}
+
+
 
 /*==================================================================================================
                                          END OF FILE

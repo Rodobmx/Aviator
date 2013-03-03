@@ -39,6 +39,8 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     JOYSTICK_POS pos;  
     pos = GetJoystickPosition();
     decaler_avion(pos);
+    
+    
 }
 /*==================================================================================================
                                  GLOBAL VARIABLE DECLARATIONS

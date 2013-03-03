@@ -58,9 +58,9 @@ int main( void )
 {
     init_board();
      
-    unsigned char x=10,y=10;
+    //unsigned char x=10,y=10;
     
-    JOYSTICK_POS pos;
+    //JOYSTICK_POS pos;
  
     init_aviator();
     
