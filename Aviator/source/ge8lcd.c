@@ -129,7 +129,7 @@ static void SPI_Init(void)
     /* USART Baud Rate Control Register 0 and 1 */
     /* USART Modulation Control Register */
     // Set BaudRate - no divider
-    UBR01   = 0x04;
+    UBR01   = 0x02;
     UBR11   = 0x00;
     UMCTL1  = 0x00;
 
@@ -166,6 +166,14 @@ void LCD_Init(void)
     DelayS(50000);
     DelayS(50000);
 
+    SPI_Send(true,LCDCMD_DISOFF);
+
+    // Display control
+    SPI_Send(true,LCDCMD_DISCTL);
+    SPI_Send(false,0x00); // default
+    SPI_Send(false,0x20); // (32 + 1) * 4 = 132 lines (of which 130 are visible)
+    SPI_Send(false,0x0a); // default
+
     LCD_DefaultSettings();
 }
 
@@ -180,13 +188,6 @@ void LCD_Backlight(const uint8_t state)
 
 void LCD_DefaultSettings(void)
 {
-    // Display control
-    SPI_Send(true,LCDCMD_DISCTL);
-
-    SPI_Send(false,0x00); // default
-    SPI_Send(false,0x20); // (32 + 1) * 4 = 132 lines (of which 130 are visible)
-    SPI_Send(false,0x0a); // default
-
     // COM scan
     SPI_Send(true,LCDCMD_COMSCN);
     SPI_Send(false,0x01);  // Scan 1-80
@@ -211,19 +212,21 @@ void LCD_DefaultSettings(void)
     SPI_Send(false,0x0f);// ref voltage regulator on, circuit voltage follower on, boost on
 
     // Normal display
-    //SPI_Send(true,LCDCMD_DISNOR);
+    SPI_Send(true,LCDCMD_DISNOR);
 
     // Inverse display
-    SPI_Send(true,LCDCMD_DISINV);
+    //SPI_Send(true,LCDCMD_DISINV);
 
     // Partial area off
     SPI_Send(true,LCDCMD_PTLOUT);
 
     // Data control
     SPI_Send(true,LCDCMD_DATCTL);
-    SPI_Send(false,0x01); // has been changed : orginal was all inversions off, column direction
+    SPI_Send(false,0x00); // Inverse none
     SPI_Send(false,0x00); // RGB sequence
     SPI_Send(false,0x02); // 4k color
+
+    SPI_Send(true,LCDCMD_NOP); // Need to do it some time
 
     // Page Address set
     SPI_Send(true,LCDCMD_PASET);
@@ -234,9 +237,6 @@ void LCD_DefaultSettings(void)
     SPI_Send(true,LCDCMD_CASET);
     SPI_Send(false,0);
     SPI_Send(false,131);
-
-    // wait ~100ms
-    DelayS(10000);
 
     // Display On
     SPI_Send(true,LCDCMD_DISON);
@@ -286,7 +286,7 @@ void LCD_SetPixel(const uint8_t  x, const uint8_t  y, const uint16_t color)
     const uint8_t colorB = ( ((color<<4)&0xF0) | ((color>>8)&0x0F) );
     // Green, Blue
     const uint8_t colorC = (color & 0xFF);
-    
+
     SPI_Send(true,LCDCMD_RAMWR);
     SPI_Send(false,colorA);
     SPI_Send(false,colorB);
@@ -506,6 +506,23 @@ void LCD_DrawRect(const uint8_t x0, const uint8_t y0, const uint8_t x1, const ui
 }
 
 
+void LCD_BlitRawBuffer( const uint8_t row, const uint8_t col, const uint8_t size_row, const uint8_t size_col, const uint8_t * const buffer )
+{
+    LCD_SetXYXY(row,col,row+size_row,col+size_col-1);
+    const uint16_t size = (size_row*size_col*3+1)/2;
+    const uint8_t * data = buffer;
+
+    SPI_Send(true,LCDCMD_RAMWR);
+    for(uint16_t j=0; j<size; ++j) {
+        SPI_Send(false,*data++);
+    }
+    SPI_Send(false,0);
+    SPI_Send(false,0);
+    SPI_Send(false,0);
+    SPI_Send(true,LCDCMD_NOP);
+}
+
+
 void LCD_write(unsigned char *buff)
 {
     // along al the string we need to send
@@ -647,19 +664,19 @@ void LCD_PutChar(char c, int  x, int  y, int size, int fColor, int bColor)
     nCols = *pFont;
     nRows = *(pFont + 1);
     nBytes = *(pFont + 2);
-// get pointer to the last byte of the desired character
-    pChar = pFont + (nBytes * (c - 0x1F)) + nBytes - 1;
+// get pointer to the first byte of the desired character
+    pChar = pFont + (nBytes * (c - 0x1F));
 
     LCD_SetXYXY( x, y, x + nRows - 1, y + nCols - 1 );
 
 // WRITE MEMORY
     SPI_Send(true,LCDCMD_RAMWR);
 
-// loop on each row, working backwards from the bottom to the top
-    for (i = nRows - 1; i >= 0; i--) {
+// loop on each row, working from the top to bottom
+    for (i = 0; i <= nRows - 1; i++) {
 
 // copy pixel row from font table and then decrement row
-        PixelRow = *pChar--;
+        PixelRow = *pChar++;
 
 // loop on each pixel in the row (left to right)
 // Note: we do two pixels each loop

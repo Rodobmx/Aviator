@@ -1,4 +1,3 @@
-
 #ifndef _GE8LCD_H_
 #define _GE8LCD_H_
 
@@ -27,6 +26,9 @@
 #define BROWN   0xB22
 #define ORANGE  0xFA0
 #define PINK    0xF6A
+
+#define LCD_WIDTH (132)
+#define LCD_HEIGHT (132)
 
 /** Perform initialisation of the ge8 LCD and the SPI bus.
 	Must be called before any other functions of this library.
@@ -73,6 +75,27 @@ void LCD_DrawLine(uint8_t x0, uint8_t y0, const uint8_t x1, const uint8_t y1, co
     \param color Color (12 bits 0xRGB)
 */
 void LCD_DrawRect(const uint8_t x0, const uint8_t y0, const uint8_t x1, const uint8_t y1, const uint8_t fill, const uint16_t color);
+
+/** Blit (print) an image on screen.
+    This function will fill a rectangular area on screen with a user's defined color image.
+    The image content is given through a pointer and must be in the following format :
+    |byte| content |
+    | 0  | 0xR0G1  | Red and Green channel (4bits each) for pixel 0
+    | 1  | 0xB0R1  | Blue channel for pixel 0 (4bits) and Red for pixel 1
+    | 2  | 0xG1B1  | Green and Blue for pixel 1
+    | 3  | 0xR2G2  | Red and Green for pixel 2
+    | 4  | 0xB2R3  | Blue for pixel 2, Red for pixel 3
+    ...
+
+    The rectangular area where the image is displayed is given in parameters. The given
+    buffer must contain enough bytes to fill the complete area.
+    \param row Starting row (from top of LCD)
+    \param col Starting column (from left of LCD)
+    \param size_x Number of rows in the buffer
+    \param size_y Number of columns in the buffer
+    \param buffer Byte array containing the color information to fill the area
+    */
+void LCD_BlitRawBuffer( const uint8_t row, const uint8_t col, const uint8_t size_row, const uint8_t size_col, const uint8_t * const buffer );
 
 /** Print a single character on screen
     \param c Char to print
