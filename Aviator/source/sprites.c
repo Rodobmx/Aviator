@@ -24,4 +24,6 @@ unsigned int SPACE_avion[AVION_Y_LENGTH][AVION_X_LENGTH]=
 	BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,YELLOW	,YELLOW	,YELLOW	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,
 	BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,YELLOW	,YELLOW	,YELLOW	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE};
 
-unsigned int sprite_meteore[METEORE_Y_LENGTH][METEORE_X_LENGTH]={BLUE};
+
+#define SQUARE_METEORE // permet un affichage accelerer si le sprite est carré (mono couleur)
+unsigned int sprite_meteore[METEORE_Y_LENGTH][METEORE_X_LENGTH]={RED};

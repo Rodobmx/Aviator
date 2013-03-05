@@ -13,6 +13,10 @@ R.SAVOURET       				        	     -           Initial version of the file.
                                         INCLUDE FILES
 ==================================================================================================*/
 #include "..\header\meteore.h"
+#include <stdlib.h>
+#include <stdint.h>
+#include <time.h>
+#include <io430x16x.h>
 
 /*==================================================================================================
                                         LOCAL MACROS
@@ -64,16 +68,25 @@ void addMeteore()
   }
   
   meteore[i].state = EXIST;
-  meteore[i].x = 40; // a remplacer par rand()
-  meteore[i].y = 0;
+  meteore[i].x = ( rand()%(132-15) ); // a remplacer par rand()
+  meteore[i].y = -METEORE_Y_LENGTH;
 }
                                          
 void avanceMeteore()
 {
   int i = 0;
   for(i; i<NB_METEORE_MAX; i++)
+  {
     if(meteore[i].state == EXIST)
-      meteore[i].y++;
+    {
+      if(meteore[i].y < 132)
+      {
+        meteore[i].y++;
+      } else {
+        detruireMeteore(i);
+      }
+    }
+  }
 }
   
 void detruireMeteore(unsigned int i)
@@ -85,13 +98,39 @@ void afficher_meteore()
 {
   unsigned char y,x;
   unsigned int i=0;
-  for(i; i<NB_METEORE_MAX; i++)
+  for(i=0; i<NB_METEORE_MAX; i++)
+  {
     if(meteore[i].state == EXIST)
     {
-      for(x=0; x<15; x++)
-        for(y=0; y<20; y++)
-          LCD_SetPixel(meteore[i].y+y,meteore[i].x+x,sprite_meteore[x][y]);
+      
+#ifdef SQUARE_METEORE
+      for(x=0; x<METEORE_X_LENGTH; x++)
+      {
+        for(y=0; y<METEORE_Y_LENGTH; y++)
+        {
+          if(y==0)
+          {
+            LCD_SetPixel(meteore[i].y+y,meteore[i].x+x,background_color);
+          } else {
+            LCD_SetPixel(meteore[i].y+y,meteore[i].x+x,sprite_meteore[x][y]);
+          }
+        }
+      }
+#else
+      for(x=0; x<METEORE_X_LENGTH; x++)
+      {
+        if(meteore[i].x+x < 132)
+        { 
+          if(meteore[i].y>0)
+            LCD_SetPixel((meteore[i].y-1),meteore[i].x+x,background_color);
+          if((meteore[i].y<132-1) || (meteore[i].y>0))
+            LCD_SetPixel(meteore[i].y+(METEORE_Y_LENGTH-1),meteore[i].x+x,sprite_meteore[x][y]);
+        }
+      }
+
+#endif
     }
+  }
 }
 
 

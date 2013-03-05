@@ -40,6 +40,9 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     pos = GetJoystickPosition();
     decaler_avion(pos);
     
+    avanceMeteore();
+    afficher_meteore();
+    
     
 }
 /*==================================================================================================
@@ -61,12 +64,15 @@ void init_aviator()
     LCD_Init();
     LCD_Fill(BLUE);
     initTimer();    
+    addMeteore();
+    afficher_meteore();
 }
 
 // Initialisation du timer
 void initTimer()
 {   
-  CCR0 = 32768/5 -1;
+  CCR0 = 32;32768;
+  CCR1 = 32;32768;
   CCTL1 = OUTMOD_7; // CCR1 reset/set
  //CCR1 = CCR0; // CCR1 PWM duty cycle
   TACTL = TASSEL_2 + MC_1;                  // ACLK, upmode

@@ -39,7 +39,7 @@ typedef enum _E_STATE {
 ==================================================================================================*/
 typedef struct _S_METEORE {
   unsigned int x;
-  unsigned int y;
+  int y;
   E_STATE state; // 0 : null, 1 : créé, 2 : en destruction
 } S_METEORE;
 /*==================================================================================================
@@ -52,5 +52,7 @@ typedef struct _S_METEORE {
 void addMeteore(void);
 void avanceMeteore(void);
 void detruireMeteore(unsigned int i);
+
+extern unsigned int background_color;
 
 #endif	/* _METEORE_H_ */

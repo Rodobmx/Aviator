@@ -13,6 +13,7 @@ R.SAVOURET                                    				Initial version of the file.
                                          INCLUDE FILES
 ==================================================================================================*/
 #include "..\header\avion.h"
+#include "..\header\meteore.h"
 
 /*==================================================================================================
                                            CONSTANTS
@@ -89,6 +90,8 @@ void decaler_avion(JOYSTICK_POS pos)
         break;
         
       case J_CENTER: // TIR
+          // test generation meteore
+        addMeteore();
         break;
     }
   
