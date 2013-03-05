@@ -47,6 +47,8 @@ extern unsigned int sprite_meteore[METEORE_Y_LENGTH][METEORE_X_LENGTH];
                                    LOCAL FUNCTION PROTOTYPES
 ==================================================================================================*/
 
+static int rand(void);
+
 /*==================================================================================================
                                        LOCAL FUNCTIONS
 ==================================================================================================*/
@@ -68,14 +70,14 @@ void addMeteore()
   }
   
   meteore[i].state = EXIST;
-  meteore[i].x = ( rand()%(132-15) ); // a remplacer par rand()
+  meteore[i].x = rand(); // a remplacer par 
   meteore[i].y = -METEORE_Y_LENGTH;
 }
                                          
 void avanceMeteore()
 {
   int i = 0;
-  for(i; i<NB_METEORE_MAX; i++)
+  for(i=0; i<NB_METEORE_MAX; i++)
   {
     if(meteore[i].state == EXIST)
     {
@@ -98,11 +100,11 @@ void afficher_meteore()
 {
   unsigned char y,x;
   unsigned int i=0;
+  
   for(i=0; i<NB_METEORE_MAX; i++)
   {
     if(meteore[i].state == EXIST)
     {
-      
 #ifdef SQUARE_METEORE
       for(x=0; x<METEORE_X_LENGTH; x++)
       {
@@ -133,7 +135,18 @@ void afficher_meteore()
   }
 }
 
-
+static int rand(void)
+{
+     int rand = TACCR0;
+     rand = rand % 127;
+     
+     if(rand < METEORE_Y_LENGTH)
+     {
+       rand = METEORE_Y_LENGTH;
+     }
+     
+     return rand;
+}
 
 /*==================================================================================================
                                          END OF FILE

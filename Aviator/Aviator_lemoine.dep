@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>3685323059</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\source\arme.c</file>
+      <file>$PROJ_DIR$\header\driver_boutons.h</file>
+      <file>$PROJ_DIR$\source\driver_bouton.c</file>
+      <file>$PROJ_DIR$\header\arme.h</file>
+      <file>$PROJ_DIR$\source\aviator.c</file>
+      <file>$PROJ_DIR$\header\aviator.h</file>
+      <file>$PROJ_DIR$\source\avion.c</file>
+      <file>$PROJ_DIR$\header\avion.h</file>
+      <file>$PROJ_DIR$\source\driver_joystick.c</file>
+      <file>$PROJ_DIR$\header\driver_joystick.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\aviator.pbi</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\header\font.h</file>
+      <file>$PROJ_DIR$\source\ge8lcd.c</file>
+      <file>$PROJ_DIR$\header\ge8lcd.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\ge8lcd.r43</file>
+      <file>$PROJ_DIR$\source\meteore.c</file>
+      <file>$PROJ_DIR$\header\meteore.h</file>
+      <file>$PROJ_DIR$\source\sprites.c</file>
+      <file>$PROJ_DIR$\header\sprites.h</file>
+      <file>$TOOLKIT_DIR$\config\multiplier.xcl</file>
+      <file>$TOOLKIT_DIR$\config\lnk430F149.xcl</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430f149.h</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\driver_joystick.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\driver_bouton.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\driver_bouton.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\avion.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\arme.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\aviator.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\avion.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\driver_joystick.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\arme.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\meteore.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\sprites.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\ge8lcd.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\meteore.pbi</file>
+      <file>$PROJ_DIR$\Debug\Exe\Aviator_lemoine.d43</file>
+      <file>$PROJ_DIR$\Debug\Obj\sprites.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\Aviator_lemoine.pbd</file>
+      <file>$TOOLKIT_DIR$\inc\msp430.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdint.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430xG46x.h</file>
+      <file>$TOOLKIT_DIR$\inc\in430.h</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\yvals.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Defaults.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ystdio.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdio.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdarg.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ysizet.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdbool.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\time.h</file>
+      <file>$TOOLKIT_DIR$\inc\io430x16x.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdlib.h</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 38</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\arme.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 29</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 33</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 3</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\driver_bouton.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 44 45 46</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44 45 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\aviator.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 5 41 23 45 46 44 9 7 19 14 43 42 47 48 22 49 50 51 17</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 5 41 23 45 46 44 9 7 19 14 43 42 47 48 49 50 51 17</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\avion.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 7 41 23 45 46 44 19 14 43 42 47 48 22 49 50 51 9 17</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7 41 23 45 46 44 19 14 43 42 47 48 49 50 51 9 17</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\driver_joystick.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 32</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 25</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 44 45 46 9</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44 45 46 9</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 52</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 53</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 44 45 46 43 42 47 48 22 49 50 51 5 41 23 9 7 19 14 17 1</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44 45 46 43 42 47 48 49 50 51 5 41 23 9 7 19 14 17 1</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\ge8lcd.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 36</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 14 43 42 47 48 22 49 50 51 44 45 46 56 55 57 54 58 12</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 14 43 42 47 48 49 50 51 44 45 46 56 55 57 54 58 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\meteore.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 34</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 17 19 14 43 42 47 48 22 49 50 51 61 57 59 60 46</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17 19 14 43 42 47 48 49 50 51 61 57 59 60 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\sprites.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 35</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 39</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 19 14 43 42 47 48 22 49 50 51</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19 14 43 42 47 48 49 50 51</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\Aviator_lemoine.d43</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 21 20 29 30 31 27 32 15 52 34 35 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Obj\Aviator_lemoine.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 33 10 28 26 25 36 53 37 39</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

@@ -23,7 +23,7 @@ R.SAVOURET                                    				Initial version of the file.
 /*==================================================================================================
                                        DEFINES AND MACROS
 ==================================================================================================*/
-
+#define DELAY_NOUVEAU_METEOR 10
 
 /*==================================================================================================
                                              ENUMS
@@ -36,6 +36,7 @@ R.SAVOURET                                    				Initial version of the file.
 #pragma vector=TIMERA0_VECTOR
 __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
 { 
+  
     JOYSTICK_POS pos;  
     pos = GetJoystickPosition();
     decaler_avion(pos);
@@ -43,6 +44,9 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     avanceMeteore();
     afficher_meteore();
     
+    ticks++;
+    if (ticks == DELAY_NOUVEAU_METEOR)
+      addMeteore();
     
 }
 /*==================================================================================================
@@ -54,6 +58,8 @@ unsigned int background_color = BLUE;
 unsigned int avion_xbase=60;
 unsigned int avion_ybase=111;
 */
+
+unsigned int ticks = 0;
 
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
@@ -71,8 +77,8 @@ void init_aviator()
 // Initialisation du timer
 void initTimer()
 {   
-  CCR0 = 32;32768;
-  CCR1 = 32;32768;
+  CCR0 = 32;//32768;
+  CCR1 = 32;//32768;
   CCTL1 = OUTMOD_7; // CCR1 reset/set
  //CCR1 = CCR0; // CCR1 PWM duty cycle
   TACTL = TASSEL_2 + MC_1;                  // ACLK, upmode
