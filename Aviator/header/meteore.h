@@ -25,7 +25,6 @@ R.SAVOURET                                    				Initial version of the file.
 ==================================================================================================*/
 #define NB_METEORE_MAX 10
 
-
 /*==================================================================================================
                                              ENUMS
 ==================================================================================================*/
@@ -52,7 +51,7 @@ typedef struct _S_METEORE {
 void addMeteore(void);
 void avanceMeteore(void);
 void detruireMeteore(unsigned int i);
-
+void afficher_meteore(void);
 extern unsigned int background_color;
 
 #endif	/* _METEORE_H_ */

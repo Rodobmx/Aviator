@@ -19,6 +19,8 @@ R.SAVOURET                                    				Initial version of the file.
 #include "driver_joystick.h"
 #include "avion.h"
 #include "meteore.h"
+#include "missile.h"
+#include "arme.h"
 
 /*==================================================================================================
                                            CONSTANTS

@@ -25,5 +25,36 @@ unsigned int SPACE_avion[AVION_Y_LENGTH][AVION_X_LENGTH]=
 	BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,YELLOW	,YELLOW	,YELLOW	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE	,BLUE};
 
 
+
 #define SQUARE_METEORE // permet un affichage accelerer si le sprite est carré (mono couleur)
 unsigned int sprite_meteore[METEORE_Y_LENGTH][METEORE_X_LENGTH]={RED};
+
+
+uint8_t SPACE_MISSILE[MISSILE_Y_LENGTH*MISSILE_X_LENGTH]=
+{	
+	0x00    ,0xFF  , 0x00 , 0xF0, 0x00 , 0X0F,  //blue,red,red,blue.
+        0xF0    ,0x0F  , 0x00 , 0xF0, 0x0F , 0X00,  //red,red,red,red
+        0x00    ,0xFF  , 0x00 , 0xF0, 0x00 , 0X0F,  //blue,red,red,blue
+        0x00    ,0xFF  , 0x00 , 0xF0, 0x00 , 0X0F,  //blue,red,red,blue
+        0xF0    ,0x0F  , 0x00 , 0xF0, 0x0F , 0X00,  //red,red,red,red
+        0x00    ,0xFF  , 0x00 , 0xF0, 0x00 , 0X0F,  //blue,red,red,blue
+        0x00    ,0xFF  , 0x00 , 0xF0, 0x00 , 0X0F,  //blue,red,red,blue
+        0x00    ,0xFF  , 0xF0 , 0xFF, 0x00 , 0X0F  //blue,yellow,yellow,blue
+};
+
+uint8_t SPACE_BALLE[BALLES_Y_LENGTH]=
+{	
+	0xFF    ,0x0F  , 0xF0 , 0xFF, 0x0F , 0XF0  //YELLOW,YELLOW,YELLOW,YELLOW,
+};
+
+#define WHITE   0xFFF
+#define BLACK   0x000
+#define RED     0xF00
+#define GREEN   0x0F0
+#define BLUE    0x00F
+#define CYAN    0x0FF
+#define MAGENTA 0xF0F
+#define YELLOW  0xFF0
+#define BROWN   0xB22
+#define ORANGE  0xFA0
+#define PINK    0xF6A

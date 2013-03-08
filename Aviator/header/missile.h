@@ -8,14 +8,14 @@ R.SAVOURET                                    				Initial version of the file.
 
 ==================================================================================================*/
 
-#ifndef _ARMES_H_
-#define	_ARMES_H_
+#ifndef _MISSILE_H_
+#define	_MISSILE_H_
 
 /*==================================================================================================
                                          INCLUDE FILES
 ==================================================================================================*/
 
-#include <stdint.h>
+#include "meteore.h"
 #include "sprites.h"
 
 /*==================================================================================================
@@ -26,6 +26,9 @@ R.SAVOURET                                    				Initial version of the file.
                                        DEFINES AND MACROS
 ==================================================================================================*/
 
+#define MISSILES_MAX 30
+#define BORD_ECRAN 5
+
 /*==================================================================================================
                                              ENUMS
 ==================================================================================================*/
@@ -33,23 +36,34 @@ R.SAVOURET                                    				Initial version of the file.
 /*==================================================================================================
                                  STRUCTURES AND OTHER TYPEDEFS
 ==================================================================================================*/
-typedef struct {
-    unsigned int periode;
-    uint8_t *sprite;
-}ARME;
-
+/*
+typedef enum ETAT {
+  ,
+  EXIST,
+  DESTRUCTION
+} ETAT;
+*/
+typedef struct S_MISSILE{
+    
+    unsigned int x,y;
+    E_STATE etat;
+  
+}S_MISSILE;
 
 /*==================================================================================================
                                  GLOBAL VARIABLE DECLARATIONS
 ==================================================================================================*/
-extern uint8_t SPACE_MISSILE[];
-extern uint8_t SPACE_BALLE[];
 
+extern uint8_t SPACE_MISSILE[];
 
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
 
-void init_armement(void);
+void addMissile(unsigned char x,unsigned char y); //ajout d'un missile par son ordonnée, correspondante au vaisseau
+void avanceMissile(void); //fait avancer tous les missiles d'un pas
+void detruireMissile(unsigned char x); //supprime un missile de la liste
+void afficherMissile(void);
 
-#endif	/* _ARMES_H_ */
+
+#endif	/* _MISSILE_H_ */

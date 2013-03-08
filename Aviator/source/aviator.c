@@ -30,26 +30,6 @@ R.SAVOURET                                    				Initial version of the file.
 ==================================================================================================*/
 
 /*==================================================================================================
-                                 STRUCTURES AND OTHER TYPEDEFS
-==================================================================================================*/
-// Timer A0 interrupt
-#pragma vector=TIMERA0_VECTOR
-__interrupt void Timer_A (void) // Fonction d'interruption sur le timer
-{ 
-  
-    JOYSTICK_POS pos;  
-    pos = GetJoystickPosition();
-    decaler_avion(pos);
-    
-    avanceMeteore();
-    afficher_meteore();
-    
-    ticks++;
-    if (ticks == DELAY_NOUVEAU_METEOR)
-      addMeteore();
-    
-}
-/*==================================================================================================
                                  GLOBAL VARIABLE DECLARATIONS
 ==================================================================================================*/
 /*
@@ -59,7 +39,35 @@ unsigned int avion_xbase=60;
 unsigned int avion_ybase=111;
 */
 
-unsigned int ticks = 0;
+/*==================================================================================================
+                                 STRUCTURES AND OTHER TYPEDEFS
+==================================================================================================*/
+// Timer A0 interrupt
+#pragma vector=TIMERA0_VECTOR
+__interrupt void Timer_A (void) // Fonction d'interruption sur le timer
+{ 
+    static int ticks_meteore=0;
+
+    //décalage du joueur
+    JOYSTICK_POS pos;  
+    pos = GetJoystickPosition();
+    decaler_avion(pos);
+    
+    //calcul des positions
+    avanceMeteore();
+    avanceMissile();
+
+    ticks_meteore++;
+    
+    if (ticks_meteore == DELAY_NOUVEAU_METEOR)
+    {
+      addMeteore();
+      ticks_meteore = 0;
+    }
+    
+    afficher_meteore();
+}
+
 
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
@@ -70,6 +78,7 @@ void init_aviator()
     LCD_Init();
     LCD_Fill(BLUE);
     initTimer();    
+    init_armement();
     addMeteore();
     afficher_meteore();
 }

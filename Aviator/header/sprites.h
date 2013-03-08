@@ -29,6 +29,10 @@ R.SAVOURET                                    				Initial version of the file.
 #define METEORE_X_LENGTH 15
 #define METEORE_Y_LENGTH 15
 
+#define MISSILE_Y_LENGTH  6
+#define MISSILE_X_LENGTH  8
+
+#define BALLES_Y_LENGTH 6 //mode blit
 /*==================================================================================================
                                              ENUMS
 ==================================================================================================*/

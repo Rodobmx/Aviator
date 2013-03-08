@@ -1,3 +1,4 @@
+
 /*==================================================================================================
 Revision History:
                             Modification       Rev.
@@ -12,12 +13,7 @@ R.SAVOURET       				        	     -           Initial version of the file.
 /*==================================================================================================
                                         INCLUDE FILES
 ==================================================================================================*/
-#include "..\header\meteore.h"
-#include <stdlib.h>
-#include <stdint.h>
-#include <time.h>
-#include <io430x16x.h>
-
+#include "..\header\missile.h"
 /*==================================================================================================
                                         LOCAL MACROS
 ==================================================================================================*/
@@ -41,106 +37,81 @@ R.SAVOURET       				        	     -           Initial version of the file.
 /*==================================================================================================
                                        GLOBAL VARIABLES
 ==================================================================================================*/
-S_METEORE meteore[NB_METEORE_MAX];
-extern unsigned int sprite_meteore[METEORE_Y_LENGTH][METEORE_X_LENGTH];
+
+S_MISSILE missiles[MISSILES_MAX];
+
 /*==================================================================================================
                                    LOCAL FUNCTION PROTOTYPES
 ==================================================================================================*/
-
 
 /*==================================================================================================
                                        LOCAL FUNCTIONS
 ==================================================================================================*/
 
-
-
 /*==================================================================================================
                                        GLOBAL FUNCTIONS
 ==================================================================================================*/
-// ajouter timer
-void addMeteore()
+
+void addMissile(unsigned char x, unsigned char y)
 {
-  int i = 0;
-  while(meteore[i].state != NULL)
-  {
-    i++;
-    if(i>NB_METEORE_MAX-1)
-      return; // Nb max de météores atteint
-  }
-  
-  meteore[i].state = EXIST;
-  meteore[i].x = rand()%(132-15);
-  meteore[i].y = -METEORE_Y_LENGTH;
+   unsigned char i=0;
+   
+   while(missiles[i].etat != NULL)
+   {
+     i++;
+     if(i == MISSILES_MAX)  //max de missiles atteint
+       return;
+   }
+   
+   missiles[i].etat = EXIST;
+   missiles[i].x = x;
+   missiles[i].y = y;  
 }
-                                         
-void avanceMeteore()
-{
-  int i = 0;
-  for(i=0; i<NB_METEORE_MAX; i++)
-  {
-    if(meteore[i].state == EXIST)
-    {
-      if(meteore[i].y < 132)
-      {
-        meteore[i].y++;
-      } else {
-        detruireMeteore(i);
-      }
-    }
-  }
-}
-  
-void detruireMeteore(unsigned int x)
+
+
+void avanceMissile(void)
 {
   unsigned char i;
   
-  for(i=0;i<NB_METEORE_MAX;i++)
+  for(i=0;i<sizeof(missiles);i++)
   {
-    if(meteore[i].x = x);
+    //pas de test sur l'existance du missile
+    //gain de temps
+    missiles[i].y--;
+    
+    if(missiles[i].y < BORD_ECRAN)
     {
-      meteore[i].state = NULL;
+      missiles[i].etat = NULL;
     }
-  }
+  }  
 }
 
-void afficher_meteore()
+void detruireMissile(unsigned char x)
 {
-  unsigned char y,x;
-  unsigned int i=0;
+  unsigned char i;
   
-  for(i=0; i<NB_METEORE_MAX; i++)
+  for(i=0;i<MISSILES_MAX;i++)
   {
-    if(meteore[i].state == EXIST)
+    if(missiles[i].x = x)
     {
-#ifdef SQUARE_METEORE
-      for(x=0; x<METEORE_X_LENGTH; x++)
-      {
-        for(y=0; y<METEORE_Y_LENGTH; y++)
-        {
-          if(y==0)
-          {
-            LCD_SetPixel(meteore[i].y+y,meteore[i].x+x,background_color);
-          } else {
-            LCD_SetPixel(meteore[i].y+y,meteore[i].x+x,sprite_meteore[x][y]);
-          }
-        }
-      }
-#else
-      for(x=0; x<METEORE_X_LENGTH; x++)
-      {
-        if(meteore[i].x+x < 132)
-        { 
-          if(meteore[i].y>0)
-            LCD_SetPixel((meteore[i].y-1),meteore[i].x+x,background_color);
-          if((meteore[i].y<132-1) || (meteore[i].y>0))
-            LCD_SetPixel(meteore[i].y+(METEORE_Y_LENGTH-1),meteore[i].x+x,sprite_meteore[x][y]);
-        }
-      }
-
-#endif
+      missiles[i].etat = NULL;
     }
   }
 }
+
+
+void afficherMissile()
+{
+    unsigned char i;
+    for(i=0;i<sizeof(missiles);i++)
+    {
+      if(missiles[i].etat == EXIST)
+      {
+        LCD_BlitRawBuffer(missiles[i].x, missiles[i].y, MISSILE_X_LENGTH,MISSILE_Y_LENGTH,SPACE_MISSILE);
+      }
+    }
+}
+
 
 /*==================================================================================================
                                          END OF FILE
