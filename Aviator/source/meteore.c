@@ -42,7 +42,7 @@ R.SAVOURET       				        	     -           Initial version of the file.
                                        GLOBAL VARIABLES
 ==================================================================================================*/
 S_METEORE meteore[NB_METEORE_MAX];
-extern unsigned int sprite_meteore[METEORE_Y_LENGTH][METEORE_X_LENGTH];
+extern uint8_t sprite_meteore[METEORE_Y_LENGTH*METEORE_X_LENGTH];
 /*==================================================================================================
                                    LOCAL FUNCTION PROTOTYPES
 ==================================================================================================*/
@@ -69,7 +69,7 @@ void addMeteore()
   }
   
   meteore[i].state = EXIST;
-  meteore[i].x = rand()%(132-15);
+  meteore[i].x = (rand()%(132-15));
   meteore[i].y = -METEORE_Y_LENGTH;
 }
                                          
@@ -84,19 +84,23 @@ void avanceMeteore()
       {
         meteore[i].y++;
       } else {
-        detruireMeteore(i);
+        /* MAUVAISE IMPLEMENTATION, pas en fonction de X, mais de I !*/
+        /* Donc un simple update de .state suffit */
+        meteore[i].state = NULL;
+        //detruireMeteore(i);
       }
     }
   }
 }
   
+
 void detruireMeteore(unsigned int x)
 {
   unsigned char i;
   
   for(i=0;i<NB_METEORE_MAX;i++)
   {
-    if(meteore[i].x = x);
+    if(meteore[i].x == x);
     {
       meteore[i].state = NULL;
     }
@@ -105,7 +109,7 @@ void detruireMeteore(unsigned int x)
 
 void afficher_meteore()
 {
-  unsigned char y,x;
+  //unsigned char y,x;
   unsigned int i=0;
   
   for(i=0; i<NB_METEORE_MAX; i++)
@@ -113,6 +117,7 @@ void afficher_meteore()
     if(meteore[i].state == EXIST)
     {
 #ifdef SQUARE_METEORE
+      
       for(x=0; x<METEORE_X_LENGTH; x++)
       {
         for(y=0; y<METEORE_Y_LENGTH; y++)
@@ -125,7 +130,12 @@ void afficher_meteore()
           }
         }
       }
+      
 #else
+      //a finir
+      LCD_BlitRawBuffer(meteore[i].y, meteore[i].x, METEORE_Y_LENGTH,METEORE_X_LENGTH,sprite_meteore);
+      //LCD_DrawRect(meteore[i].y, meteore[i].x, meteore[i].y+10, meteore[i].x+10,0,0xFFFF);
+      /*
       for(x=0; x<METEORE_X_LENGTH; x++)
       {
         if(meteore[i].x+x < 132)
@@ -136,11 +146,20 @@ void afficher_meteore()
             LCD_SetPixel(meteore[i].y+(METEORE_Y_LENGTH-1),meteore[i].x+x,sprite_meteore[x][y]);
         }
       }
-
+    */
 #endif
     }
   }
 }
+
+void initMeteor()
+{
+  unsigned int i;
+  
+  for(i=0;i<NB_METEORE_MAX;i++)
+    meteore[i].state = NULL;
+}
+
 
 /*==================================================================================================
                                          END OF FILE

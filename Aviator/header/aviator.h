@@ -33,6 +33,7 @@ R.SAVOURET                                    				Initial version of the file.
 #define AVION_X_LENGTH 15
 #define AVION_Y_LENGTH 20
 */
+#define BORD_ECRAN 5
 
 /*==================================================================================================
                                              ENUMS

@@ -52,6 +52,18 @@ R.SAVOURET       				        	     -           Initial version of the file.
 /*==================================================================================================
                                        GLOBAL FUNCTIONS
 ==================================================================================================*/
+void InitBoutons()
+{
+  //bp P1.6 et p1.7 en entrée
+  //P1REN |= (BIT6)+BIT7;        //activation pull
+  //P1OUT |= BIT3;        //=> pull-up
+  P1DIR &= ~(BIT6+BIT7);       //direction du port
+  
+  //interruption du le BP sur P1.3
+  P1IE |= (BIT6+BIT7);         //activation de l'int
+  P1IES |= (BIT6+BIT7);        //Sur front descendant
+  P1IFG &= ~(BIT6+BIT7);       //reset du flag
+}
 
 /*==================================================================================================
                                          END OF FILE

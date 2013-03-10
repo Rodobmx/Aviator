@@ -44,6 +44,7 @@ R.SAVOURET                                    				Initial version of the file.
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
 
+void InitBoutons();
 
 
 #endif	/* _DRIVER_BOUTONS_H_ */

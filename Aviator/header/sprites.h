@@ -26,10 +26,10 @@ R.SAVOURET                                    				Initial version of the file.
 #define AVION_X_LENGTH 15
 #define AVION_Y_LENGTH 20
 
-#define METEORE_X_LENGTH 15
-#define METEORE_Y_LENGTH 15
+#define METEORE_X_LENGTH 16  //mode blit : 6=2*3pixels
+#define METEORE_Y_LENGTH 8
 
-#define MISSILE_Y_LENGTH  6
+#define MISSILE_Y_LENGTH  6  //mode blit : 6=2*3pixels
 #define MISSILE_X_LENGTH  8
 
 #define BALLES_Y_LENGTH 6 //mode blit

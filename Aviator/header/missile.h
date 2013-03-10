@@ -17,6 +17,7 @@ R.SAVOURET                                    				Initial version of the file.
 
 #include "meteore.h"
 #include "sprites.h"
+#include "aviator.h"
 
 /*==================================================================================================
                                            CONSTANTS
@@ -27,7 +28,7 @@ R.SAVOURET                                    				Initial version of the file.
 ==================================================================================================*/
 
 #define MISSILES_MAX 30
-#define BORD_ECRAN 5
+
 
 /*==================================================================================================
                                              ENUMS

@@ -39,6 +39,8 @@ unsigned int avion_xbase=60;
 unsigned int avion_ybase=111;
 */
 
+unsigned int score=0;
+
 /*==================================================================================================
                                  STRUCTURES AND OTHER TYPEDEFS
 ==================================================================================================*/
@@ -55,11 +57,10 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     
     //calcul des positions
     avanceMeteore();
-    avanceMissile();
+    //avanceMissile();
 
     ticks_meteore++;
-    
-    if (ticks_meteore == DELAY_NOUVEAU_METEOR)
+    if (ticks_meteore >= DELAY_NOUVEAU_METEOR)
     {
       addMeteore();
       ticks_meteore = 0;
@@ -68,26 +69,49 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     afficher_meteore();
 }
 
+#pragma vector=PORT1_VECTOR
+__interrupt void Port1(void)
+{
+  //bouton A
+  if((P1IFG && BIT6) == BIT6)
+  {
+    addMissile(130,20);
+  }
+    
+  //bouton B
+  if((P1IFG && BIT7) == BIT7)
+  {
+    
+  }
+  //raz du flag
+  P1IFG &= ~(BIT6+BIT7);
+}
 
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
 
+
 void init_aviator()
 {
     LCD_Init();
     LCD_Fill(BLUE);
+    
     initTimer();    
-    init_armement();
-    addMeteore();
-    afficher_meteore();
+    //init_armement();
+    initMeteor();
+    
+    //addMeteore();
+    //afficher_meteore();
 }
 
 // Initialisation du timer
 void initTimer()
 {   
-  CCR0 = 32;//32768;
-  CCR1 = 32;//32768;
+  //CCR0 = 32;//32768;
+  //CCR1 = 32;//32768;
+  CCR0 = 1000;
+  CCR1 = 1000;
   CCTL1 = OUTMOD_7; // CCR1 reset/set
  //CCR1 = CCR0; // CCR1 PWM duty cycle
   TACTL = TASSEL_2 + MC_1;                  // ACLK, upmode

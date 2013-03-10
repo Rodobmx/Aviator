@@ -17,6 +17,7 @@ R.SAVOURET                                    				Initial version of the file.
 
 #include "meteore.h"
 #include "sprites.h"
+#include "aviator.h"
 
 /*==================================================================================================
                                            CONSTANTS

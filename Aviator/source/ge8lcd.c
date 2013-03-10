@@ -100,7 +100,6 @@ static void SPI_Send( uint8_t isCommand, uint8_t payload )
 
     P4OUT &= ~0x20; // P4.5 -> LOW
     P4OUT |= 0x20;  // P4.5 -> HIGH
-
     P4SEL |= 0x28;  // P4.3 and P4.5 SPI option select
 
     // Write byte

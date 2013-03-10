@@ -73,7 +73,7 @@ void avanceMissile(void)
 {
   unsigned char i;
   
-  for(i=0;i<sizeof(missiles);i++)
+  for(i=0;i<MISSILES_MAX;i++)
   {
     //pas de test sur l'existance du missile
     //gain de temps

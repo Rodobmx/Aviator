@@ -63,6 +63,12 @@ void init_armement()
   //definition
   armes[1].periode = 20;
   armes[1].sprite = SPACE_BALLE;
+  /*
+  for(i=0;i<((METEORE_Y_LENGTH-1)*(METEORE_X_LENGTH-1));i++)
+  {
+    sprite_meteore[i] = RED;
+  }
+  */
 }
 
 

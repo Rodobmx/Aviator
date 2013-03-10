@@ -48,6 +48,7 @@ typedef struct _S_METEORE {
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
+void initMeteor(void);
 void addMeteore(void);
 void avanceMeteore(void);
 void detruireMeteore(unsigned int i);

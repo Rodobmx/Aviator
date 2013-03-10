@@ -38,7 +38,7 @@ R.SAVOURET       				        	     -           Initial version of the file.
                                        GLOBAL VARIABLES
 ==================================================================================================*/
 
-S_MISSILE balles[BALLES_MAX];
+S_BALLE balles[BALLES_MAX];
 
 /*==================================================================================================
                                    LOCAL FUNCTION PROTOTYPES
@@ -107,7 +107,7 @@ void afficherBalles()
     {
       if(balles[i].etat == EXIST)
       {
-        LCD_BlitRawBuffer(balles[i].x, balles[i].y,1,    ,SPACE_BALLE);
+        LCD_BlitRawBuffer(balles[i].x, balles[i].y,1,BALLES_Y_LENGTH,SPACE_BALLE);
       }
     }
 }
