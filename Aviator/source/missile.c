@@ -103,11 +103,11 @@ void detruireMissile(unsigned char x)
 void afficherMissile()
 {
     unsigned char i;
-    for(i=0;i<sizeof(missiles);i++)
+    for(i=0;i< MISSILES_MAX;i++)
     {
       if(missiles[i].etat == EXIST)
       {
-        LCD_BlitRawBuffer(missiles[i].x, missiles[i].y, MISSILE_X_LENGTH,MISSILE_Y_LENGTH,SPACE_MISSILE);
+        LCD_BlitRawBuffer(missiles[i].y, missiles[i].x, MISSILE_Y_LENGTH,MISSILE_X_LENGTH,SPACE_MISSILE);
       }
     }
 }

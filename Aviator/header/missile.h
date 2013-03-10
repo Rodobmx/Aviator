@@ -27,7 +27,7 @@ R.SAVOURET                                    				Initial version of the file.
                                        DEFINES AND MACROS
 ==================================================================================================*/
 
-#define MISSILES_MAX 30
+#define MISSILES_MAX 20
 
 
 /*==================================================================================================
@@ -65,6 +65,5 @@ void addMissile(unsigned char x,unsigned char y); //ajout d'un missile par son o
 void avanceMissile(void); //fait avancer tous les missiles d'un pas
 void detruireMissile(unsigned char x); //supprime un missile de la liste
 void afficherMissile(void);
-
 
 #endif	/* _MISSILE_H_ */

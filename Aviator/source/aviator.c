@@ -34,10 +34,9 @@ R.SAVOURET                                    				Initial version of the file.
 ==================================================================================================*/
 /*
 unsigned int background_color = BLUE;
-
-unsigned int avion_xbase=60;
-unsigned int avion_ybase=111;
 */
+extern int avion_xbase;
+extern int avion_ybase;
 
 unsigned int score=0;
 
@@ -54,10 +53,11 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     JOYSTICK_POS pos;  
     pos = GetJoystickPosition();
     decaler_avion(pos);
+
     
     //calcul des positions
     avanceMeteore();
-    //avanceMissile();
+    avanceMissile();
 
     ticks_meteore++;
     if (ticks_meteore >= DELAY_NOUVEAU_METEOR)
@@ -67,21 +67,23 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     }
     
     afficher_meteore();
+    afficherMissile();
 }
 
 #pragma vector=PORT1_VECTOR
 __interrupt void Port1(void)
 {
   //bouton A
-  if((P1IFG && BIT6) == BIT6)
+  if( (P1IFG | BIT6) == P1IFG)
   {
-    addMissile(130,20);
+    addMissile(avion_xbase,avion_ybase);
+    //addMissile(130,20);
   }
     
   //bouton B
-  if((P1IFG && BIT7) == BIT7)
+  if( (P1IFG | BIT7) == P1IFG)
   {
-    
+    addBalle(130,20);
   }
   //raz du flag
   P1IFG &= ~(BIT6+BIT7);
@@ -110,11 +112,11 @@ void initTimer()
 {   
   //CCR0 = 32;//32768;
   //CCR1 = 32;//32768;
-  CCR0 = 1000;
-  CCR1 = 1000;
-  CCTL1 = OUTMOD_7; // CCR1 reset/set
+  CCR0 = 50000;
+  //CCR1 = 1000;
+  //CCTL1 = OUTMOD_7; // CCR1 reset/set
  //CCR1 = CCR0; // CCR1 PWM duty cycle
-  TACTL = TASSEL_2 + MC_1;                  // ACLK, upmode
+  TACTL = ID_3 + TASSEL_2 + MC_1;                  // ACLK, upmode
   TA0CCTL0 = CCIE;
   __bis_SR_register(GIE);
 }
