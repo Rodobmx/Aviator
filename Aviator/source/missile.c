@@ -17,7 +17,7 @@ R.SAVOURET       				        	     -           Initial version of the file.
 /*==================================================================================================
                                         LOCAL MACROS
 ==================================================================================================*/
-
+#define STEP_MISSILE 1
 /*==================================================================================================
                           LOCAL TYPEDEFS (STRUCTURES, UNIONS, ENUMS)
 ==================================================================================================*/
@@ -64,7 +64,7 @@ void addMissile(unsigned char x, unsigned char y)
    }
    
    missiles[i].etat = EXIST;
-   missiles[i].x = x;
+   missiles[i].x = x+AVION_X_LENGTH/2-1;
    missiles[i].y = y;  
 }
 
@@ -77,26 +77,20 @@ void avanceMissile(void)
   {
     //pas de test sur l'existance du missile
     //gain de temps
-    missiles[i].y--;
+    missiles[i].y -= STEP_MISSILE;
     
     if(missiles[i].y < BORD_ECRAN)
     {
       missiles[i].etat = NULL;
+      detruireMissile(i);
     }
   }  
 }
 
-void detruireMissile(unsigned char x)
+void detruireMissile(unsigned char i)
 {
-  unsigned char i;
-  
-  for(i=0;i<MISSILES_MAX;i++)
-  {
-    if(missiles[i].x = x)
-    {
       missiles[i].etat = NULL;
-    }
-  }
+      LCD_DrawRect(missiles[i].y, missiles[i].x,missiles[i].y+MISSILE_Y_LENGTH,missiles[i].x+MISSILE_X_LENGTH,1, BLUE);
 }
 
 
@@ -107,7 +101,7 @@ void afficherMissile()
     {
       if(missiles[i].etat == EXIST)
       {
-        LCD_BlitRawBuffer(missiles[i].y, missiles[i].x, MISSILE_Y_LENGTH,MISSILE_X_LENGTH,SPACE_MISSILE);
+        LCD_BlitRawBuffer(missiles[i].y, missiles[i].x,MISSILE_Y_LENGTH,MISSILE_X_LENGTH,SPACE_MISSILE);
       }
     }
 }

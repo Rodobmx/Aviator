@@ -33,7 +33,7 @@ R.SAVOURET       				        	     -           Initial version of the file.
 /*==================================================================================================
                                        GLOBAL CONSTANTS
 ==================================================================================================*/
-
+#define STEP_BALLE 2
 /*==================================================================================================
                                        GLOBAL VARIABLES
 ==================================================================================================*/
@@ -77,26 +77,20 @@ void avanceBalles(void)
   {
     //pas de test sur l'existance du missile
     //gain de temps
-    balles[i].y--;
+    balles[i].y -= STEP_BALLE;
     
-    if(balles[i].y < BORD_ECRAN)
+    if((balles[i].y < BORD_ECRAN) && (balles[i].etat == EXIST))
     {
-      balles[i].etat = NULL;
+      detruireBalle(i);
     }
   }  
 }
 
-void detruireBalle(unsigned char x)
+void detruireBalle(unsigned char i)
 {
-  unsigned char i;
-  
-  for(i=0;i<BALLES_MAX;i++)
-  {
-    if(balles[i].x = x)
-    {
-      balles[i].etat = NULL;
-    }
-  }
+  balles[i].etat = NULL;
+  //LCD_BlitRawBuffer(balles[i].y, balles[i].x,BALLES_Y_LENGTH,1,SPACE_BALLE);
+  LCD_DrawRect(balles[i].y,balles[i].x, balles[i].y+BALLES_Y_LENGTH,balles[i].x+BALLES_X_LENGTH,1, BLUE);
 }
 
 
@@ -107,7 +101,7 @@ void afficherBalles()
     {
       if(balles[i].etat == EXIST)
       {
-        LCD_BlitRawBuffer(balles[i].x, balles[i].y,1,BALLES_Y_LENGTH,SPACE_BALLE);
+        LCD_BlitRawBuffer(balles[i].y, balles[i].x,BALLES_Y_LENGTH,BALLES_X_LENGTH,SPACE_BALLE);
       }
     }
 }

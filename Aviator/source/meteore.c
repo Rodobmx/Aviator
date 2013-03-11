@@ -75,36 +75,26 @@ void addMeteore()
                                          
 void avanceMeteore()
 {
-  int i = 0;
+  int i;
   for(i=0; i<NB_METEORE_MAX; i++)
   {
     if(meteore[i].state == EXIST)
     {
-      if(meteore[i].y < 132)
+      if(meteore[i].y < (131-METEORE_Y_LENGTH))
       {
-        meteore[i].y++;
+        meteore[i].y += PAS_AVANCE;
       } else {
-        /* MAUVAISE IMPLEMENTATION, pas en fonction de X, mais de I !*/
-        /* Donc un simple update de .state suffit */
-        meteore[i].state = NULL;
-        //detruireMeteore(i);
+        detruireMeteore(i);
       }
     }
   }
 }
   
 
-void detruireMeteore(unsigned int x)
+void detruireMeteore(unsigned int i)
 {
-  unsigned char i;
-  
-  for(i=0;i<NB_METEORE_MAX;i++)
-  {
-    if(meteore[i].x == x);
-    {
       meteore[i].state = NULL;
-    }
-  }
+      LCD_DrawRect(meteore[i].y, meteore[i].x,meteore[i].y+METEORE_Y_LENGTH,meteore[i].x+METEORE_X_LENGTH,1, BLUE);
 }
 
 void afficher_meteore()
@@ -132,7 +122,6 @@ void afficher_meteore()
       }
       
 #else
-      //a finir
       LCD_BlitRawBuffer(meteore[i].y, meteore[i].x, METEORE_Y_LENGTH,METEORE_X_LENGTH,sprite_meteore);
       //LCD_DrawRect(meteore[i].y, meteore[i].x, meteore[i].y+10, meteore[i].x+10,0,0xFFFF);
       /*

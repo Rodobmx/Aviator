@@ -29,7 +29,7 @@ R.SAVOURET                                    				Initial version of the file.
 
 
 
-#define AVION_SPEED 4
+#define AVION_SPEED 2
 
 /*==================================================================================================
                                              ENUMS
@@ -46,7 +46,7 @@ R.SAVOURET                                    				Initial version of the file.
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
-void afficher_avion(unsigned int x, unsigned int y);
+void afficher_avion(void);
 void decaler_avion(JOYSTICK_POS pos);
 
 

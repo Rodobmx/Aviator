@@ -27,7 +27,7 @@ R.SAVOURET                                    				Initial version of the file.
                                        DEFINES AND MACROS
 ==================================================================================================*/
 
-#define BALLES_MAX 30
+#define BALLES_MAX 50
 
 /*==================================================================================================
                                              ENUMS
@@ -56,7 +56,7 @@ extern uint8_t SPACE_BALLE[];
 
 void addBalle(unsigned char x,unsigned char y); //ajout d'un missile par son ordonnée, correspondante au vaisseau
 void avanceBalles(void); //fait avancer tous les missiles d'un pas
-void detruireBalle(unsigned char x); //supprime un missile de la liste
+void detruireBalle(unsigned char i); //supprime un missile de la liste
 void afficherBalles(void);
 
 

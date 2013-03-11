@@ -21,6 +21,7 @@ R.SAVOURET                                    				Initial version of the file.
 #include "meteore.h"
 #include "missile.h"
 #include "arme.h"
+#include "balle.h"
 
 /*==================================================================================================
                                            CONSTANTS
@@ -33,7 +34,7 @@ R.SAVOURET                                    				Initial version of the file.
 #define AVION_X_LENGTH 15
 #define AVION_Y_LENGTH 20
 */
-#define BORD_ECRAN 5
+#define BORD_ECRAN 2
 
 /*==================================================================================================
                                              ENUMS
@@ -52,6 +53,7 @@ R.SAVOURET                                    				Initial version of the file.
 ==================================================================================================*/
 void init_aviator();
 void initTimer();
-
+void checkCollision();
+void itoa(char* dest, int val, int digits, int base);
 
 #endif	/* _AVIATOR_H_ */

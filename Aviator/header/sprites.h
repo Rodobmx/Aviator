@@ -23,16 +23,20 @@ R.SAVOURET                                    				Initial version of the file.
 /*==================================================================================================
                                        DEFINES AND MACROS
 ==================================================================================================*/
-#define AVION_X_LENGTH 15
-#define AVION_Y_LENGTH 20
+#define AVION_X_LENGTH 14
+#define AVION_Y_LENGTH 18
 
-#define METEORE_X_LENGTH 16  //mode blit : 6=2*3pixels
+#define METEORE_X_LENGTH 8  //mode blit : 12 pixels
 #define METEORE_Y_LENGTH 8
 
-#define MISSILE_Y_LENGTH  6  //mode blit : 6=2*3pixels
-#define MISSILE_X_LENGTH  8
+#define MISSILE_X_LENGTH  4  //mode blit : 4 pixels
+#define MISSILE_Y_LENGTH  11
 
-#define BALLES_Y_LENGTH 6 //mode blit
+#define BALLES_X_LENGTH 1
+#define BALLES_Y_LENGTH 6 //mode blit : 6 pixels
+
+#define DECALLAGE_ARME  2
+
 /*==================================================================================================
                                              ENUMS
 ==================================================================================================*/

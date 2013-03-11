@@ -515,9 +515,11 @@ void LCD_BlitRawBuffer( const uint8_t row, const uint8_t col, const uint8_t size
     for(uint16_t j=0; j<size; ++j) {
         SPI_Send(false,*data++);
     }
+    /*
     SPI_Send(false,0);
     SPI_Send(false,0);
     SPI_Send(false,0);
+    */
     SPI_Send(true,LCDCMD_NOP);
 }
 
