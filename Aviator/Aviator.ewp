@@ -58,11 +58,11 @@
         </option>
         <option>
           <name>RTConfigPath</name>
-          <state>$TOOLKIT_DIR$\LIB\DLIB\dl430fn.h</state>
+          <state>$TOOLKIT_DIR$\LIB\DLIB\dl430xsfn.h</state>
         </option>
         <option>
           <name>RTLibraryPath</name>
-          <state>$TOOLKIT_DIR$\LIB\DLIB\dl430fn.r43</state>
+          <state>$TOOLKIT_DIR$\LIB\DLIB\dl430xsfn.r43</state>
         </option>
         <option>
           <name>Input variant</name>
@@ -97,7 +97,7 @@
         </option>
         <option>
           <name>OGChipSelectMenu</name>
-          <state>MSP430F149	MSP430F149</state>
+          <state>MSP430FG4619	MSP430FG4619</state>
         </option>
         <option>
           <name>GStackHeapOverride</name>
@@ -699,6 +699,8 @@
         <option>
           <name>XIncludes</name>
           <state>$TOOLKIT_DIR$\LIB\</state>
+          <state>source\</state>
+          <state>header\</state>
         </option>
         <option>
           <name>ModuleStatus</name>
@@ -710,7 +712,7 @@
         </option>
         <option>
           <name>XclFile</name>
-          <state>$TOOLKIT_DIR$\CONFIG\lnk430F149.xcl</state>
+          <state>$TOOLKIT_DIR$\CONFIG\lnk430FG4619.xcl</state>
         </option>
         <option>
           <name>XclFileSlave</name>
@@ -838,7 +840,7 @@
         </option>
         <option>
           <name>ExtraOutputFile</name>
-          <state>templproj.a43</state>
+          <state>Aviator.a43</state>
         </option>
         <option>
           <name>ExtraOutputFormat</name>
@@ -947,7 +949,11 @@
         <debug>1</debug>
         <option>
           <name>CUTest</name>
-          <state>###Uninitialized###</state>
+          <state>-I$TOOLKIT_DIR$\inc</state>
+          <state>-@$TOOLKIT_DIR$\bin\iar.cmd</state>
+          <state>-@$PROJ_DIR$\source.txt</state>
+          <state>-@$PROJ_DIR$\include.txt</state>
+          <state>--preinclude=$PROJ_DIR$\IAR_ULPAdvisor_Defs.h</state>
         </option>
         <option>
           <name>ULPRules</name>
@@ -960,7 +966,7 @@
         </option>
         <option>
           <name>OutputFile</name>
-          <state>$PROJ_FNAME$.ulp</state>
+          <state></state>
         </option>
         <option>
           <name>ULPStatus</name>
@@ -1958,6 +1964,9 @@
       <name>$PROJ_DIR$\header\avion.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\header\balle.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\header\driver_boutons.h</name>
     </file>
     <file>
@@ -1971,6 +1980,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\header\meteore.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\header\missile.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\header\sprites.h</name>
@@ -1988,6 +2000,9 @@
       <name>$PROJ_DIR$\source\avion.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\source\balle.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\source\driver_bouton.c</name>
     </file>
     <file>
@@ -1998,6 +2013,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\source\meteore.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\missile.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\source\sprites.c</name>
     </file>
   </group>
   <file>

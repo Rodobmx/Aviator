@@ -24,6 +24,7 @@ R.SAVOURET                                    				Initial version of the file.
                                        DEFINES AND MACROS
 ==================================================================================================*/
 #define DELAY_NOUVEAU_METEOR 10
+#define VITESSE_JEUX_BASE 50000 // valeur du compteur
 
 /*==================================================================================================
                                              ENUMS
@@ -38,8 +39,10 @@ unsigned int background_color = BLUE;
 extern int avion_xbase;
 extern int avion_ybase;
 
-unsigned int score=0, vie;
-unsigned char score_tab[5] = {'0'};
+unsigned int score=0, vie; 
+unsigned int Difficulte; // 0 à 50 000, plus la valeur est grande, plus la vitesse totale du jeux est rapide
+char score_tab[5] = {'0'};
+
 extern S_METEORE meteore[NB_METEORE_MAX];
 extern S_BALLE balles[BALLES_MAX];
 extern S_MISSILE missiles[MISSILES_MAX];
@@ -79,7 +82,8 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     afficherBalles();
     
     afficher_avion();
-    //LCD_PutStr("SCORE :", 120, 10, 10, YELLOW, BLACK);
+    
+    CCR0 = VITESSE_JEUX_BASE - Difficulte;
     }
     else
     {
@@ -87,23 +91,27 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
       LCD_PutStr("GAME OVER !" , 20, 20, 2, YELLOW, BLACK);
       LCD_PutStr(score_tab,50,20, 2,YELLOW,BLACK);
       while((P1IN & BIT6) != 0);
-      vie = 5;
-      score = 0;
-      LCD_Fill(BLUE);
+      //vie = 5;
+      //score = 0;
+      init_aviator();
     }
 }
 
 #pragma vector=PORT1_VECTOR
+
+
 __interrupt void Port1(void)
 {
   //bouton A
-  if( (P1IFG | BIT6) == P1IFG)
+  //if( (P1IFG | BIT6) == P1IFG)                  // fonctionne, mais c'est con de faire sa, sa rajoute le bit 6 a P1IFG et sa compare avec celui de base si il y est déj&
+  if(P1IFG & BIT6)                         // <<<-- autant regarder directement si le bit 6 est présent
   {
     addMissile(avion_xbase,avion_ybase);
   }
     
   //bouton B
-  if( (P1IFG | BIT7) == P1IFG)
+  //if( (P1IFG | BIT7) == P1IFG)
+  if(P1IFG & BIT7)
   {
     addBalle(avion_xbase+AVION_X_LENGTH-DECALLAGE_ARME-1,avion_ybase);
     addBalle(avion_xbase+DECALLAGE_ARME,avion_ybase);
@@ -126,12 +134,13 @@ void init_aviator()
     initMeteor();
     vie = 5;
     score = 0;
+    Difficulte = 1;
 }
 
 // Initialisation du timer
 void initTimer()
 {   
-  CCR0 = 50000;
+  CCR0 = VITESSE_JEUX_BASE;
  
   TACTL = ID_3 + TASSEL_2 + MC_1;                  // divider 8, ACLK, upmode
   TA0CCTL0 = CCIE;
@@ -161,7 +170,8 @@ void checkCollision()
       {
         detruireMeteore(i);
         detruireMissile(j);
-        score += 10;
+        score += 1*Difficulte;
+        Difficulte++;
       }
     }
     
@@ -175,7 +185,8 @@ void checkCollision()
       {
         detruireMeteore(i);
         detruireBalle(j);
-        score += 20;
+        score += 2*Difficulte;
+        Difficulte++;
       }
     }
     
