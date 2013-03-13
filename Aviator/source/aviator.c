@@ -16,42 +16,52 @@ R.SAVOURET                                    				Initial version of the file.
 #include "..\header\aviator.h"
 
 /*==================================================================================================
-                                           CONSTANTS
+                                        LOCAL MACROS
 ==================================================================================================*/
 
-
-/*==================================================================================================
-                                       DEFINES AND MACROS
-==================================================================================================*/
-#define DELAY_NOUVEAU_METEOR 10
-#define VITESSE_JEUX_BASE 50000 // valeur du compteur sur TIMERA
-#define MULTIPLICATEUR_DIFFICULTE 100 //10 // Facteur de multiplication de la difficulté (acceleration de la vitesse du jeux)
-#define DIFFICULTE_MAX  200
-#define SCORE_LENGTH 7
+#define DELAY_NOUVEAU_METEOR            10              // Iteration min du timer pour generation d'un meteore
+#define VITESSE_JEUX_BASE               50000           // valeur du compteur sur TIMERA
+#define MULTIPLICATEUR_DIFFICULTE       100             // Facteur de multiplication de la difficulté (acceleration de la vitesse du jeux)
+#define DIFFICULTE_MAX                  200             // MULTIPLICATEUR_DIFFICULTE * DIFFICULTE_MAX < VITESSE_JEUX_BASE
+#define SCORE_LENGTH                    7               // +1 pour caractere fin de ligne
 /*==================================================================================================
                                              ENUMS
 ==================================================================================================*/
 
 /*==================================================================================================
-                                 GLOBAL VARIABLE DECLARATIONS
+                                       LOCAL VARIABLES
 ==================================================================================================*/
-/*
-unsigned int background_color = BLUE;
-*/
+uint32_t score=0;
+unsigned int vie=5; 
+unsigned int Difficulte=1;
+char score_tab[SCORE_LENGTH+1] = {'0','0','0','0','0','0','0',0};
+/*==================================================================================================
+                                       GLOBAL CONSTANTS
+==================================================================================================*/
+
+/*==================================================================================================
+                                       GLOBAL VARIABLES
+==================================================================================================*/
 extern int avion_xbase;
 extern int avion_ybase;
-
-uint32_t score=0;
-unsigned int vie; 
-unsigned int Difficulte; // 0 à 50 000, plus la valeur est grande, plus la vitesse totale du jeux est rapide
-char score_tab[SCORE_LENGTH] = {'0'};
 
 extern S_METEORE meteore[NB_METEORE_MAX];
 extern S_BALLE balles[BALLES_MAX];
 extern S_MISSILE missiles[MISSILES_MAX];
 
 /*==================================================================================================
-                                 STRUCTURES AND OTHER TYPEDEFS
+                                   LOCAL FUNCTION PROTOTYPES
+==================================================================================================*/
+
+
+/*==================================================================================================
+                                       LOCAL FUNCTIONS
+==================================================================================================*/
+
+
+
+/*==================================================================================================
+                                       GLOBAL FUNCTIONS
 ==================================================================================================*/
 // Timer A0 interrupt
 #pragma vector=TIMERA0_VECTOR
@@ -86,11 +96,12 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     
     afficher_avion();
     
+    // ajustement de la difficulte
     CCR0 = VITESSE_JEUX_BASE - (Difficulte*MULTIPLICATEUR_DIFFICULTE);
     }
     else
-    {
-      itoa(score_tab, score, SCORE_LENGTH,10);
+    {// plus de vie
+      itoa(score_tab, score, (SCORE_LENGTH+1),10);
       LCD_PutStr("GAME OVER !" , 20, 20, 2, YELLOW, BLACK);
       LCD_PutStr(score_tab,50,20, 2,YELLOW,BLACK);
       while((P1IN & BIT6) != 0);
@@ -102,14 +113,12 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
 __interrupt void Port1(void)
 {
   //bouton A
-  //if( (P1IFG | BIT6) == P1IFG)                  // fonctionne, mais c'est con de faire sa, sa rajoute le bit 6 a P1IFG et sa compare avec celui de base si il y est déj&
-  if(P1IFG & BIT6)                         // <<<-- autant regarder directement si le bit 6 est présent
+  if(P1IFG & BIT6)
   {
     addMissile(avion_xbase,avion_ybase);
   }
     
   //bouton B
-  //if( (P1IFG | BIT7) == P1IFG)
   if(P1IFG & BIT7)
   {
     addBalle(avion_xbase+AVION_X_LENGTH-DECALLAGE_ARME-1,avion_ybase);
@@ -118,10 +127,6 @@ __interrupt void Port1(void)
   //raz du flag
   P1IFG &= ~(BIT6+BIT7);
 }
-
-/*==================================================================================================
-                                     FUNCTION PROTOTYPES
-==================================================================================================*/
 
 
 void init_aviator()
@@ -153,7 +158,7 @@ void checkCollision()
   {
     // Collision avec l'avion
     if(meteore[i].y > (LCD_HEIGHT-AVION_Y_LENGTH)&&(meteore[i].state == EXIST))
-      if((meteore[i].x > avion_xbase) && (meteore[i].x < (avion_xbase+AVION_X_LENGTH)))
+      if(((meteore[i].x+METEORE_X_LENGTH) > avion_xbase) && (meteore[i].x < (avion_xbase+AVION_X_LENGTH)))
       {
         detruireMeteore(i);
         vie--;
@@ -200,11 +205,12 @@ void itoa(char* dest, uint32_t val, int digits, int base)
   const char digitMap[] = "0123456789abcdef";
   if(val < (uint32_t)0) return;
   if(base == 00 || base > 16) return;
-  
+  dest[--digits] = '\0';
   do
   {
     dest[--digits] = digitMap[(uint32_t)(val%(uint32_t)base)];
     val/= (uint32_t)base;
   }while(val > 0);  
+  
 }
   
