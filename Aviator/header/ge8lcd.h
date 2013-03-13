@@ -124,4 +124,3 @@ void LCD_Printf (const char *fmt, ...);
 
 
 #endif // ! defined _GE8LCD_H_
-

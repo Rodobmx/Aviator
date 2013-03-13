@@ -166,7 +166,7 @@ void checkCollision()
          (missiles[j].x <= (meteore[i].x+METEORE_X_LENGTH)) && 
          (missiles[j].etat == EXIST) &&
          (missiles[j].y < (meteore[i].y+METEORE_Y_LENGTH)))
-      {
+      {        
         detruireMeteore(i);
         detruireMissile(j);
         score += 2*Difficulte;
@@ -206,9 +206,5 @@ void itoa(char* dest, uint32_t val, int digits, int base)
     dest[--digits] = digitMap[(uint32_t)(val%(uint32_t)base)];
     val/= (uint32_t)base;
   }while(val > 0);  
-  
-  
-  
-  
 }
   

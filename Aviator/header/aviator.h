@@ -20,7 +20,6 @@ R.SAVOURET                                    				Initial version of the file.
 #include "avion.h"
 #include "meteore.h"
 #include "missile.h"
-#include "arme.h"
 #include "balle.h"
 
 /*==================================================================================================
@@ -55,5 +54,6 @@ void init_aviator();
 void initTimer();
 void checkCollision();
 void itoa(char* dest, uint32_t val, int digits, int base);
+void afficherExplosion(char x, char y);
 
 #endif	/* _AVIATOR_H_ */
