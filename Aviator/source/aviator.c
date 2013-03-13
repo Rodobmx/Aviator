@@ -33,7 +33,7 @@ R.SAVOURET                                    				Initial version of the file.
 ==================================================================================================*/
 uint32_t score=0;
 unsigned int vie=5; 
-unsigned int Difficulte=1;
+unsigned int Difficulte=1;              // 
 char score_tab[SCORE_LENGTH+1] = {'0','0','0','0','0','0','0',0};
 /*==================================================================================================
                                        GLOBAL CONSTANTS
@@ -63,14 +63,15 @@ extern S_MISSILE missiles[MISSILES_MAX];
 /*==================================================================================================
                                        GLOBAL FUNCTIONS
 ==================================================================================================*/
+
 // Timer A0 interrupt
 #pragma vector=TIMERA0_VECTOR
 __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
 { 
-    static int ticks_meteore=0;
+  static int ticks_meteore=0;
 
-    if(vie > 0)
-    {
+  if(vie > 0)
+  {
     //décalage du joueur
     JOYSTICK_POS pos;  
     pos = GetJoystickPosition();
@@ -98,15 +99,15 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     
     // ajustement de la difficulte
     CCR0 = VITESSE_JEUX_BASE - (Difficulte*MULTIPLICATEUR_DIFFICULTE);
-    }
-    else
-    {// plus de vie
-      itoa(score_tab, score, (SCORE_LENGTH+1),10);
-      LCD_PutStr("GAME OVER !" , 20, 20, 2, YELLOW, BLACK);
-      LCD_PutStr(score_tab,50,20, 2,YELLOW,BLACK);
-      while((P1IN & BIT6) != 0);
-      init_aviator();
-    }
+  }
+  else // plus de vie
+  {
+    itoa(score_tab, score, (SCORE_LENGTH+1),10); // base 10
+    LCD_PutStr("GAME OVER !" , 20, 20, 2, YELLOW, BLACK); // position 20*20
+    LCD_PutStr(score_tab,50,20, 2,YELLOW,BLACK);          // position 50*50
+    while((P1IN & BIT6) != 0);
+    init_aviator();
+  }
 }
 
 #pragma vector=PORT1_VECTOR
@@ -131,17 +132,20 @@ __interrupt void Port1(void)
 
 void init_aviator()
 {
+    // Réinitialisation de l'écran
     LCD_Init();
     LCD_Fill(BLUE);
     
+    // Réinitialisation générale
     initTimer();    
     initMeteor();
+    
+    // Réinitialisation des variables de jeu
     vie = 5;
     score = 0;
     Difficulte = 1;
 }
 
-// Initialisation du timer
 void initTimer()
 {   
   CCR0 = VITESSE_JEUX_BASE;
@@ -152,13 +156,20 @@ void initTimer()
 }
 
 void checkCollision()
+/**
+  * Détéction des collision, fonctionnement : 
+  *     - dépassement sur l'axe y (haut - bas)
+  *     - dépassement sur l'axe x (gauche - droite)
+**/
 {
   unsigned int i,j;
   for(i = 0; i<NB_METEORE_MAX; i++)
   {
     // Collision avec l'avion
-    if((meteore[i].y+METEORE_Y_LENGTH) > (LCD_HEIGHT-AVION_Y_LENGTH)&&(meteore[i].state == EXIST))
-      if(((meteore[i].x+METEORE_X_LENGTH) > avion_xbase) && (meteore[i].x < (avion_xbase+AVION_X_LENGTH)))
+    if((meteore[i].y+METEORE_Y_LENGTH) > (LCD_HEIGHT-AVION_Y_LENGTH)            // dépassement sur y
+       &&(meteore[i].state == EXIST))
+      if(((meteore[i].x+METEORE_X_LENGTH) > avion_xbase)                        // limite de collision sur x droit
+          && (meteore[i].x < (avion_xbase+AVION_X_LENGTH)))                     // limite de collision sur x gauche
       {
         detruireMeteore(i);
         vie--;
@@ -167,15 +178,15 @@ void checkCollision()
     // Collision avec missile
     for(j=0; j<MISSILES_MAX; j++)
     {
-      if(((missiles[j].x+MISSILE_X_LENGTH) >= meteore[i].x) && 
-         (missiles[j].x <= (meteore[i].x+METEORE_X_LENGTH)) && 
-         (missiles[j].etat == EXIST) &&
-         (missiles[j].y < (meteore[i].y+METEORE_Y_LENGTH)))
+      if(((missiles[j].x+MISSILE_X_LENGTH) >= meteore[i].x) &&                  // limite de collision sur x droit
+         (missiles[j].x <= (meteore[i].x+METEORE_X_LENGTH)) &&                  // limite de collision sur x gauche
+         (missiles[j].etat == EXIST) &&                                         
+         (missiles[j].y < (meteore[i].y+METEORE_Y_LENGTH)))                     // dépassement sur y
       {        
         detruireMeteore(i);
         detruireMissile(j);
         score += 2*Difficulte;
-        if(Difficulte < (uint32_t)DIFFICULTE_MAX)
+        if(Difficulte < DIFFICULTE_MAX)
           Difficulte++;
       }
     }
@@ -183,10 +194,10 @@ void checkCollision()
     // Collision avec balle
     for(j=0; j<BALLES_MAX; j++)
     {
-      if(((balles[j].x+BALLES_X_LENGTH) >= meteore[i].x) && 
-         (balles[j].x <= (meteore[i].x+METEORE_X_LENGTH)) &&
+      if(((balles[j].x+BALLES_X_LENGTH) >= meteore[i].x) &&                     // limite de collision sur x droit
+         (balles[j].x <= (meteore[i].x+METEORE_X_LENGTH)) &&                    // limite de collision sur x gauche
            (balles[j].etat == EXIST)&&
-         (balles[j].y < (meteore[i].y+METEORE_Y_LENGTH)))
+         (balles[j].y < (meteore[i].y+METEORE_Y_LENGTH)))                       // dépassement sur y
       {
         detruireMeteore(i);
         detruireBalle(j);
@@ -208,7 +219,7 @@ void itoa(char* dest, uint32_t val, int digits, int base)
   dest[--digits] = '\0';
   do
   {
-    dest[--digits] = digitMap[(uint32_t)(val%(uint32_t)base)];
+    dest[--digits] = digitMap[(uint32_t)(val%(uint32_t)base)];                  // Met la valeur ascii correspondante dans le tab de destination
     val/= (uint32_t)base;
   }while(val > 0);  
   
