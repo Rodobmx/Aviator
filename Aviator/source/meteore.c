@@ -42,7 +42,8 @@ R.SAVOURET       				        	     -           Initial version of the file.
                                        GLOBAL VARIABLES
 ==================================================================================================*/
 S_METEORE meteore[NB_METEORE_MAX];
-extern uint8_t sprite_meteore[METEORE_Y_LENGTH*METEORE_X_LENGTH];
+extern const uint8_t sprite_meteore[];
+extern const uint8_t SPACE_EXPLOSION[] ;
 /*==================================================================================================
                                    LOCAL FUNCTION PROTOTYPES
 ==================================================================================================*/
@@ -110,15 +111,15 @@ void afficher_meteore()
       LCD_BlitRawBuffer(meteore[i].y, meteore[i].x, METEORE_Y_LENGTH,METEORE_X_LENGTH,sprite_meteore);
     } else if(meteore[i].state == DESTRUCTION_1)
     {
-      meteore[i].state == DESTRUCTION_2;
+      meteore[i].state = DESTRUCTION_2;
       LCD_BlitRawBuffer(meteore[i].y, meteore[i].x, EXPLOSION_LENGTH,EXPLOSION_LENGTH,SPACE_EXPLOSION);
     } else if(meteore[i].state == DESTRUCTION_2)
     {
-      meteore[i].state == EFFACEMENT;
+      meteore[i].state = EFFACEMENT;
       LCD_BlitRawBuffer(meteore[i].y, meteore[i].x, EXPLOSION_LENGTH,EXPLOSION_LENGTH,SPACE_EXPLOSION);
     } else if(meteore[i].state == DESTRUCTION_2)
     {
-      meteore[i].state == NULL;
+      meteore[i].state = NULL;
       LCD_DrawRect(meteore[i].y, meteore[i].x,meteore[i].y+EXPLOSION_LENGTH,meteore[i].x+EXPLOSION_LENGTH,1, BLUE);
     }
   }
