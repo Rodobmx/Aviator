@@ -42,8 +42,8 @@ R.SAVOURET       				        	     -           Initial version of the file.
                                        GLOBAL VARIABLES
 ==================================================================================================*/
 S_METEORE meteore[NB_METEORE_MAX];
-extern const uint8_t sprite_meteore[];
-extern const uint8_t SPACE_EXPLOSION[] ;
+extern const uint8_t sprite_meteore[];  // sprite météore
+extern const uint8_t SPACE_EXPLOSION[]; // sprite explosion
 /*==================================================================================================
                                    LOCAL FUNCTION PROTOTYPES
 ==================================================================================================*/
@@ -58,10 +58,11 @@ extern const uint8_t SPACE_EXPLOSION[] ;
 /*==================================================================================================
                                        GLOBAL FUNCTIONS
 ==================================================================================================*/
-// ajouter timer
 void addMeteore()
 {
   int i = 0;
+  
+  // vérifie que le nombre de météore max n'est pas déjà atteint
   while(meteore[i].state != NULL)
   {
     i++;
@@ -70,17 +71,19 @@ void addMeteore()
   }
   
   meteore[i].state = EXIST;
-  meteore[i].x = (rand()%(132-15));
+  meteore[i].x = (rand()%(132-15))+5; // Position random sur x entre 5 et 132-15
   meteore[i].y = -METEORE_Y_LENGTH;
 }
                                          
 void avanceMeteore()
 {
   int i;
+  // Avance toute les météore existante
   for(i=0; i<NB_METEORE_MAX; i++)
   {
     if(meteore[i].state == EXIST)
     {
+      // si la météore arrive en bas, on la détruit
       if(meteore[i].y < (131-METEORE_Y_LENGTH))
       {
         meteore[i].y += PAS_AVANCE;
@@ -94,18 +97,18 @@ void avanceMeteore()
 
 void detruireMeteore(unsigned int i)
 {
-  
-      meteore[i].state = DESTRUCTION_1;//NULL;
-      LCD_DrawRect(meteore[i].y, meteore[i].x,meteore[i].y+METEORE_Y_LENGTH,meteore[i].x+METEORE_X_LENGTH,1, BLUE);
+    meteore[i].state = DESTRUCTION_1;
+    LCD_DrawRect(meteore[i].y, meteore[i].x,meteore[i].y+METEORE_Y_LENGTH,meteore[i].x+METEORE_X_LENGTH,1, BLUE);
 }
 
 void afficher_meteore()
 {
-  //unsigned char y,x;
   unsigned int i=0;
   
   for(i=0; i<NB_METEORE_MAX; i++)
   {
+    // affiche la météore selon son état (type machine d'état)
+    // 
     if(meteore[i].state == EXIST)
     {
       LCD_BlitRawBuffer(meteore[i].y, meteore[i].x, METEORE_Y_LENGTH,METEORE_X_LENGTH,sprite_meteore);

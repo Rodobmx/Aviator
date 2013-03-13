@@ -34,71 +34,46 @@ R.SAVOURET                                    				Initial version of the file.
 /*==================================================================================================
                                  GLOBAL VARIABLE DECLARATIONS
 ==================================================================================================*/
-unsigned int background_color = BLUE;
+unsigned int background_color = BLUE;   // Couleur de fond d'écran
 
-unsigned int avion_xbase=60;
-unsigned int avion_ybase=111;
+unsigned int avion_xbase=60;            // Position du pixel haut gauche sur x de l'avion
+unsigned int avion_ybase=111;           // Position du pixel haut gauche sur y de l'avion
 
-extern const uint8_t SPACE_avion[];
+extern const uint8_t SPACE_avion[];     // Sprite avion
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
 
 void afficher_avion()
 {
- LCD_BlitRawBuffer(avion_ybase, avion_xbase,AVION_Y_LENGTH,AVION_X_LENGTH,SPACE_avion);
+  LCD_BlitRawBuffer(avion_ybase, avion_xbase,AVION_Y_LENGTH,AVION_X_LENGTH,SPACE_avion);
 }
 
 void decaler_avion(JOYSTICK_POS pos)
-{
-  //unsigned char y,x;
- 
+{ 
   switch(pos)
     {
       case J_LEFT:
         // Effacement pixel plus utilisé
-        if(avion_xbase>=4)
+        if(avion_xbase>=4)                      // Limite du bord de gauche
         {
-         /* for(x=avion_xbase+AVION_X_LENGTH; x>avion_xbase+AVION_X_LENGTH-AVION_SPEED; x--)
-            for(y=avion_ybase; y<avion_ybase+AVION_Y_LENGTH; y++)
-                LCD_SetPixel(y,x,background_color);
-          */
           avion_xbase-=AVION_SPEED;
-          
-          
-          //for(x=0; x<15; x++)
-          //  for(y=0; y<20; y++)
-          //    LCD_SetPixel(avion_ybase+y,avion_xbase+x,SPACE_avion[y][x]);
         }
         break;
         
       case J_RIGHT:
         // Effacement pixel plus utilisé
-        if(avion_xbase+AVION_X_LENGTH <= 126)
-        {/*
-          for(x=avion_xbase; x<avion_xbase+AVION_SPEED; x++)
-            for(y=avion_ybase; y<avion_ybase+AVION_Y_LENGTH; y++)
-                LCD_SetPixel(y,x,background_color);*/
-          
+        if(avion_xbase+AVION_X_LENGTH <= 126)   // limite du bord de droite
+        {         
           avion_xbase+=AVION_SPEED;
-          /*for(x=0; x<15; x++)
-            for(y=0; y<20; y++)
-              LCD_SetPixel(avion_ybase+y,avion_xbase+x,SPACE_avion[y][x]);*/
         }
         break;
         
-      case J_CENTER: // TIR
-          // test generation meteore
-        //addMeteore();
+      case J_CENTER:
+        break;
+      case default:
         break;
     }
-  
-  /*
-  for(x=0; x<15; x++)
-    for(y=0; y<20; y++)
-      LCD_SetPixel(avion_ybase+y,x+avion_xbase,SPACE_avion[x][y]);
-  */
-  
 }
 
 

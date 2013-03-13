@@ -33,12 +33,12 @@ R.SAVOURET       				        	     -           Initial version of the file.
 /*==================================================================================================
                                        GLOBAL CONSTANTS
 ==================================================================================================*/
-#define STEP_BALLE 2
+#define STEP_BALLE 2            // Vitesse des balles (pixel / iterration de timer)
 /*==================================================================================================
                                        GLOBAL VARIABLES
 ==================================================================================================*/
 
-S_BALLE balles[BALLES_MAX];
+S_BALLE balles[BALLES_MAX];     // Tableau de balles
 
 /*==================================================================================================
                                    LOCAL FUNCTION PROTOTYPES
@@ -56,6 +56,7 @@ void addBalle(unsigned char x, unsigned char y)
 {
    unsigned char i=0;
    
+   // Recherche une position de balle disponible
    while(balles[i].etat != NULL)
    {
      i++;
@@ -63,6 +64,7 @@ void addBalle(unsigned char x, unsigned char y)
        return;
    }
    
+   // créer une balle a la position donnée
    balles[i].etat = EXIST;
    balles[i].x = x;
    balles[i].y = y;  
@@ -75,10 +77,9 @@ void avanceBalles(void)
   
   for(i=0;i<BALLES_MAX;i++)
   {
-    //pas de test sur l'existance du missile
-    //gain de temps
     balles[i].y -= STEP_BALLE;
     
+    // Suppression des balles depassé
     if((balles[i].y < BORD_ECRAN) && (balles[i].etat == EXIST))
     {
       detruireBalle(i);
@@ -89,7 +90,6 @@ void avanceBalles(void)
 void detruireBalle(unsigned char i)
 {
   balles[i].etat = NULL;
-  //LCD_BlitRawBuffer(balles[i].y, balles[i].x,BALLES_Y_LENGTH,1,SPACE_BALLE);
   LCD_DrawRect(balles[i].y,balles[i].x, balles[i].y+BALLES_Y_LENGTH,balles[i].x+BALLES_X_LENGTH,1, BLUE);
 }
 
@@ -97,6 +97,7 @@ void detruireBalle(unsigned char i)
 void afficherBalles()
 {
     unsigned char i;
+    // Affiche chaque balle si elle existe
     for(i=0;i<BALLES_MAX;i++)
     {
       if(balles[i].etat == EXIST)
