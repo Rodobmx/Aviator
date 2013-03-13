@@ -157,7 +157,7 @@ void checkCollision()
   for(i = 0; i<NB_METEORE_MAX; i++)
   {
     // Collision avec l'avion
-    if(meteore[i].y > (LCD_HEIGHT-AVION_Y_LENGTH)&&(meteore[i].state == EXIST))
+    if((meteore[i].y+METEORE_Y_LENGTH) > (LCD_HEIGHT-AVION_Y_LENGTH)&&(meteore[i].state == EXIST))
       if(((meteore[i].x+METEORE_X_LENGTH) > avion_xbase) && (meteore[i].x < (avion_xbase+AVION_X_LENGTH)))
       {
         detruireMeteore(i);
