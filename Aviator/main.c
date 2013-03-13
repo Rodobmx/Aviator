@@ -52,6 +52,7 @@ void init_board()
     P2DIR &= ~BIT6;
     
     InitJoystick();
+    InitBoutons();
 }
 
 int main( void )

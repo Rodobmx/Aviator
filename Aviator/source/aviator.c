@@ -24,8 +24,10 @@ R.SAVOURET                                    				Initial version of the file.
                                        DEFINES AND MACROS
 ==================================================================================================*/
 #define DELAY_NOUVEAU_METEOR 10
-#define VITESSE_JEUX_BASE 50000 // valeur du compteur
-
+#define VITESSE_JEUX_BASE 50000 // valeur du compteur sur TIMERA
+#define MULTIPLICATEUR_DIFFICULTE 100 //10 // Facteur de multiplication de la difficulté (acceleration de la vitesse du jeux)
+#define DIFFICULTE_MAX  200
+#define SCORE_LENGTH 7
 /*==================================================================================================
                                              ENUMS
 ==================================================================================================*/
@@ -39,9 +41,10 @@ unsigned int background_color = BLUE;
 extern int avion_xbase;
 extern int avion_ybase;
 
-unsigned int score=0, vie; 
+uint32_t score=0;
+unsigned int vie; 
 unsigned int Difficulte; // 0 à 50 000, plus la valeur est grande, plus la vitesse totale du jeux est rapide
-char score_tab[5] = {'0'};
+char score_tab[SCORE_LENGTH] = {'0'};
 
 extern S_METEORE meteore[NB_METEORE_MAX];
 extern S_BALLE balles[BALLES_MAX];
@@ -83,23 +86,19 @@ __interrupt void Timer_A (void) // Fonction d'interruption sur le timer
     
     afficher_avion();
     
-    CCR0 = VITESSE_JEUX_BASE - Difficulte;
+    CCR0 = VITESSE_JEUX_BASE - (Difficulte*MULTIPLICATEUR_DIFFICULTE);
     }
     else
     {
-      itoa(score_tab, score, 5,10);
+      itoa(score_tab, score, SCORE_LENGTH,10);
       LCD_PutStr("GAME OVER !" , 20, 20, 2, YELLOW, BLACK);
       LCD_PutStr(score_tab,50,20, 2,YELLOW,BLACK);
       while((P1IN & BIT6) != 0);
-      //vie = 5;
-      //score = 0;
       init_aviator();
     }
 }
 
 #pragma vector=PORT1_VECTOR
-
-
 __interrupt void Port1(void)
 {
   //bouton A
@@ -170,8 +169,9 @@ void checkCollision()
       {
         detruireMeteore(i);
         detruireMissile(j);
-        score += 1*Difficulte;
-        Difficulte++;
+        score += 2*Difficulte;
+        if(Difficulte < (uint32_t)DIFFICULTE_MAX)
+          Difficulte++;
       }
     }
     
@@ -185,8 +185,9 @@ void checkCollision()
       {
         detruireMeteore(i);
         detruireBalle(j);
-        score += 2*Difficulte;
-        Difficulte++;
+        score += 1*Difficulte;
+        if(Difficulte < (uint32_t)DIFFICULTE_MAX)
+          Difficulte++;
       }
     }
     
@@ -194,16 +195,16 @@ void checkCollision()
 }
 
 
-void itoa(char* dest, int val, int digits, int base)
+void itoa(char* dest, uint32_t val, int digits, int base)
 { 
   const char digitMap[] = "0123456789abcdef";
-  if(val < 0) return;
+  if(val < (uint32_t)0) return;
   if(base == 00 || base > 16) return;
   
   do
   {
-    dest[--digits] = digitMap[val%base];
-    val/= base;
+    dest[--digits] = digitMap[(uint32_t)(val%(uint32_t)base)];
+    val/= (uint32_t)base;
   }while(val > 0);  
   
   

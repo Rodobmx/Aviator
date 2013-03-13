@@ -54,6 +54,6 @@ R.SAVOURET                                    				Initial version of the file.
 void init_aviator();
 void initTimer();
 void checkCollision();
-void itoa(char* dest, int val, int digits, int base);
+void itoa(char* dest, uint32_t val, int digits, int base);
 
 #endif	/* _AVIATOR_H_ */
