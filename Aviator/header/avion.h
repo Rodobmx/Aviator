@@ -29,7 +29,8 @@ R.SAVOURET                                    				Initial version of the file.
 
 
 
-#define AVION_SPEED 2
+#define AVION_SPEED 2           // Vitesse de l'avion (doit correspondre au nombre de pixel "background' de chaque côté du sprite)
+
 
 /*==================================================================================================
                                              ENUMS
@@ -46,7 +47,16 @@ R.SAVOURET                                    				Initial version of the file.
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
+/**
+  * afficher_avion()
+  * Permet d'afficher le sprite avion sur l'ecran
+**/
 void afficher_avion(void);
+
+/**
+  * decaler_avion()
+  * Permet de decaler l'avion en fonction de l'etat du joystick
+**/
 void decaler_avion(JOYSTICK_POS pos);
 
 

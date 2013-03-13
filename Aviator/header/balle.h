@@ -27,7 +27,7 @@ R.SAVOURET                                    				Initial version of the file.
                                        DEFINES AND MACROS
 ==================================================================================================*/
 
-#define BALLES_MAX 50
+#define BALLES_MAX 50           // Nombre de balle max en jeux
 
 /*==================================================================================================
                                              ENUMS
@@ -37,6 +37,9 @@ R.SAVOURET                                    				Initial version of the file.
                                  STRUCTURES AND OTHER TYPEDEFS
 ==================================================================================================*/
 
+/**
+  * Structure balle, position et etat
+**/ 
 typedef struct S_BALLE{
     
     unsigned int x,y;
@@ -48,15 +51,37 @@ typedef struct S_BALLE{
                                  GLOBAL VARIABLE DECLARATIONS
 ==================================================================================================*/
 
-extern uint8_t SPACE_BALLE[];
+extern const uint8_t SPACE_BALLE[];   // sprite balle
 
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
 
-void addBalle(unsigned char x,unsigned char y); //ajout d'un missile par son ordonnée, correspondante au vaisseau
-void avanceBalles(void); //fait avancer tous les missiles d'un pas
-void detruireBalle(unsigned char i); //supprime un missile de la liste
+/**
+  * Fontion addBalle
+  *¨Permet de tirer des balles depuis l'avion (type mitrailleuse)
+  * Créer une balle dans un tableau de S_BALLE
+  * Paramêtre : x,y : position de création de la balle
+**/
+void addBalle(unsigned char x,unsigned char y);
+
+/**
+  * Fonction avanceBalles
+  * Permet de calculer l'avancée de toutes les balles
+**/
+void avanceBalles(void);
+
+/**
+  * Fonction detruireBalle
+  * Permet de détruire une balle
+  * Paramêtre : indice i de la balle
+**/
+void detruireBalle(unsigned char i); 
+
+/**
+  * Fonction afficherBalles
+  * Permet d'afficher les balles à l'écran
+**/
 void afficherBalles(void);
 
 

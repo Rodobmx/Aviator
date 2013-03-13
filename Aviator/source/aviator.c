@@ -42,8 +42,8 @@ char score_tab[SCORE_LENGTH+1] = {'0','0','0','0','0','0','0',0};
 /*==================================================================================================
                                        GLOBAL VARIABLES
 ==================================================================================================*/
-extern int avion_xbase;
-extern int avion_ybase;
+extern unsigned int avion_xbase;
+extern unsigned int avion_ybase;
 
 extern S_METEORE meteore[NB_METEORE_MAX];
 extern S_BALLE balles[BALLES_MAX];
@@ -214,7 +214,7 @@ void checkCollision()
 void itoa(char* dest, uint32_t val, int digits, int base)
 { 
   const char digitMap[] = "0123456789abcdef";
-  if(val < (uint32_t)0) return;
+  //if(val < (uint32_t)0) return; // inutile val est unsigned
   if(base == 00 || base > 16) return;
   dest[--digits] = '\0';
   do

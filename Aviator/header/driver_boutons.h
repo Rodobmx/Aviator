@@ -43,7 +43,9 @@ R.SAVOURET                                    				Initial version of the file.
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
-
+/**
+  * Permet d'initialiser le port d'interruption sur les boutons
+**/
 void InitBoutons();
 
 

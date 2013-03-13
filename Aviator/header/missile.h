@@ -55,15 +55,36 @@ typedef struct S_MISSILE{
                                  GLOBAL VARIABLE DECLARATIONS
 ==================================================================================================*/
 
-extern uint8_t SPACE_MISSILE[];
+extern const uint8_t SPACE_MISSILE[];
 
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
 
-void addMissile(unsigned char x,unsigned char y); //ajout d'un missile par son ordonnée, correspondante au vaisseau
-void avanceMissile(void); //fait avancer tous les missiles d'un pas
-void detruireMissile(unsigned char x); //supprime un missile de la liste
+/**
+  * Fontion addMissile
+  *¨Permet de tirer des missile depuis l'avion
+  * Paramêtre : x,y : position de création du missile
+**/
+void addMissile(unsigned char x,unsigned char y);
+
+/**
+  * Fonction avanceMissile
+  * Permet de calculer l'avancée de tous les missiles
+**/
+void avanceMissile(void);
+
+/**
+  * Fonction detruireMissile
+  * Permet de détruire un missile
+  * Paramêtre : indice i du missile
+**/
+void detruireMissile(unsigned char x);
+
+/**
+  * Fonction afficherBalles
+  * Permet d'afficher les missiles à l'écran
+**/
 void afficherMissile(void);
 
 #endif	/* _MISSILE_H_ */

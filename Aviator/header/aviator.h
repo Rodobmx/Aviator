@@ -50,9 +50,35 @@ R.SAVOURET                                    				Initial version of the file.
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
+/**
+  * Fonction principale du jeux
+  * Sur timer variable en fonction de la difficulté
+  * Fonctionnement : Calcul puis Affichage
+**/
+__interrupt void Timer_A (void);
+
+/**
+  * Fonction d'initialisation du jeux,
+  * initialise le timer A et les variables du jeu
+**/
 void init_aviator();
+
+
+/**
+  * Fonction d'initialisation du timer
+**/
 void initTimer();
+
+
+/**
+  * Fonction permettant de détécter des collision entre les éléments
+**/
 void checkCollision();
+
+
+/** * Annexe *
+  * Fonction permettant la conversion d'entier en ascii
+**/
 void itoa(char* dest, uint32_t val, int digits, int base);
 
 #endif	/* _AVIATOR_H_ */

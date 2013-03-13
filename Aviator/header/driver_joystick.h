@@ -1,12 +1,4 @@
-/*==================================================================================================
-Revision History:
-                            Modification       Rev.
-Author                       Date D/M/Y       Number    Description of Changes
--------------------------   ------------    ----------  -------------------------------------------
-N.LEMOINE
-R.SAVOURET                                    				Initial version of the file.
-
-==================================================================================================*/
+// Fichier récupéré en grosse partie sur les projet test du site olimex
 
 #ifndef _DRIVER_JOYSTICK_H_
 #define	_DRIVER_JOYSTICK_H_
@@ -30,6 +22,9 @@ R.SAVOURET                                    				Initial version of the file.
                                              ENUMS
 ==================================================================================================*/
 
+/**
+  * Enum des différentes possition possible du joystick
+**/
 typedef enum _JOYSTICK_POS
 {
     J_LEFT = 1,
@@ -50,9 +45,28 @@ typedef enum _JOYSTICK_POS
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
+
+/**
+  * Fonction permettant d'initialiser l'adc
+**/
+
 void InitADC12(void);
+
+/**
+  * Fonction permettant de récupérer la valeur de l'adc
+  * Return : unsigned int : valeur de l'adc 
+**/
 unsigned int GetADC12_A7(void);
+
+/**
+  * Fonction permettant d'initialiser le joystick
+**/
 void InitJoystick(void);
+
+/**
+  * Fonction permettant d'obtenir la position du joystick
+  * Retourne un enum JOYSTICK_POS
+**/
 JOYSTICK_POS GetJoystickPosition(void);
 
 

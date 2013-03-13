@@ -6,7 +6,6 @@
 #endif
 
 #include <stdint.h>
-//#include "header/ge8lcd.h"
 #include "header/aviator.h"
 #include "header/driver_boutons.h"
 
@@ -58,18 +57,10 @@ void init_board()
 int main( void )
 {
     init_board();
-     
-    //unsigned char x=10,y=10;
-    
-    //JOYSTICK_POS pos;
- 
     init_aviator();
     
-    while(1) 
-    {
-      //pos = GetJoystickPosition();
-      //decaler_avion(pos);
-    }
+    // Boucle infinie, le jeux est sur timer
+    while(1);
 }
 
 

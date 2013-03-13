@@ -71,7 +71,7 @@ void decaler_avion(JOYSTICK_POS pos)
         
       case J_CENTER:
         break;
-      case default:
+      default:
         break;
     }
 }

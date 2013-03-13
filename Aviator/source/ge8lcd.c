@@ -17,9 +17,9 @@
 // note: the LCD is 132 row and 132 columns, the first and last one are not seen
 static const uint8_t lcd_width = 132;
 static const uint8_t lcd_height = 132;
-static const uint8_t lcd_bits_per_pixel = 12;
+//static const uint8_t lcd_bits_per_pixel = 12;
 // For 12 bits colors : 132*132*12/8
-static const uint16_t lcd_byte_size = 26136;
+//static const uint16_t lcd_byte_size = 26136;
 
 /** Globals */
 unsigned int Lcd_row=2, Lcd_col=2; ///< For Printf()
