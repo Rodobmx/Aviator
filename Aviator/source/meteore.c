@@ -93,7 +93,8 @@ void avanceMeteore()
 
 void detruireMeteore(unsigned int i)
 {
-      meteore[i].state = NULL;
+  
+      meteore[i].state = DESTRUCTION_1;//NULL;
       LCD_DrawRect(meteore[i].y, meteore[i].x,meteore[i].y+METEORE_Y_LENGTH,meteore[i].x+METEORE_X_LENGTH,1, BLUE);
 }
 
@@ -106,37 +107,19 @@ void afficher_meteore()
   {
     if(meteore[i].state == EXIST)
     {
-#ifdef SQUARE_METEORE
-      
-      for(x=0; x<METEORE_X_LENGTH; x++)
-      {
-        for(y=0; y<METEORE_Y_LENGTH; y++)
-        {
-          if(y==0)
-          {
-            LCD_SetPixel(meteore[i].y+y,meteore[i].x+x,background_color);
-          } else {
-            LCD_SetPixel(meteore[i].y+y,meteore[i].x+x,sprite_meteore[x][y]);
-          }
-        }
-      }
-      
-#else
       LCD_BlitRawBuffer(meteore[i].y, meteore[i].x, METEORE_Y_LENGTH,METEORE_X_LENGTH,sprite_meteore);
-      //LCD_DrawRect(meteore[i].y, meteore[i].x, meteore[i].y+10, meteore[i].x+10,0,0xFFFF);
-      /*
-      for(x=0; x<METEORE_X_LENGTH; x++)
-      {
-        if(meteore[i].x+x < 132)
-        { 
-          if(meteore[i].y>0)
-            LCD_SetPixel((meteore[i].y-1),meteore[i].x+x,background_color);
-          if((meteore[i].y<132-1) || (meteore[i].y>0))
-            LCD_SetPixel(meteore[i].y+(METEORE_Y_LENGTH-1),meteore[i].x+x,sprite_meteore[x][y]);
-        }
-      }
-    */
-#endif
+    } else if(meteore[i].state == DESTRUCTION_1)
+    {
+      meteore[i].state == DESTRUCTION_2;
+      LCD_BlitRawBuffer(meteore[i].y, meteore[i].x, EXPLOSION_LENGTH,EXPLOSION_LENGTH,SPACE_EXPLOSION);
+    } else if(meteore[i].state == DESTRUCTION_2)
+    {
+      meteore[i].state == EFFACEMENT;
+      LCD_BlitRawBuffer(meteore[i].y, meteore[i].x, EXPLOSION_LENGTH,EXPLOSION_LENGTH,SPACE_EXPLOSION);
+    } else if(meteore[i].state == DESTRUCTION_2)
+    {
+      meteore[i].state == NULL;
+      LCD_DrawRect(meteore[i].y, meteore[i].x,meteore[i].y+EXPLOSION_LENGTH,meteore[i].x+EXPLOSION_LENGTH,1, BLUE);
     }
   }
 }

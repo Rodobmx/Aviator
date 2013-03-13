@@ -30,9 +30,11 @@ R.SAVOURET                                    				Initial version of the file.
                                              ENUMS
 ==================================================================================================*/
 typedef enum _E_STATE {
-  NULL,
-  EXIST,
-  DESTRUCTION
+  NULL,                         // Inexistant
+  EXIST,                        // Existe, tombe
+  DESTRUCTION_1,                // Stade de destruction 1        
+  DESTRUCTION_2,                 // Stade de destruction 2
+  EFFACEMENT
 } E_STATE;
 /*==================================================================================================
                                  STRUCTURES AND OTHER TYPEDEFS
